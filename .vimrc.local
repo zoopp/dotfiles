@@ -1,0 +1,52 @@
+" Generic settings
+set background=dark                                 " Set a dark background
+set shiftwidth=4                                    "
+set tabstop=4                                       " Set 4 spaces per tab
+set expandtab                                       " Write spaces instead of tabs
+let g:indent_guides_enable_on_vim_startup=0         " Disable indent guides
+
+set conceallevel=0                                  " Disable vim conceal feature
+set noswapfile                                      " Disable swap files
+
+" Disable arrow keys in normal mode
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Disable arrow keys in insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Disable arrow keys in visual mode
+vmap <up> <nop>
+vmap <down> <nop>
+vmap <left> <nop>
+vmap <right> <nop>
+
+" C++ specific settings
+let g:syntastic_cpp_compiler_options=' -std=c++11'  " Self explanatory
+let g:syntastic_cpp_check_header=1                  " Syntax check headers as well
+
+" LateX specific settings
+let g:tex_flavor='latex'                            " Self explanatory
+
+" Python specific settings
+" let g:pymode_lint=0                               " Disable python-mode pylint
+
+" Haskell specific settings
+let g:haddock_browser='/usr/bin/chromium'
+
+" Eclim stuff (what a mess!)
+let g:EclimCompletionMethod = 'omnifunc'
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.java = '\k\.\k*'
+
+if !exists('g:neocomplcache_vim_completefuncs')
+    let g:neocomplcache_vim_completefuncs = {}
+endif
+let g:neocomplcache_vim_completefuncs.java = 'eclim#java#complete#CodeComplete'
