@@ -1,3 +1,11 @@
 let g:spf13_bundle_groups=['general', 'programming', 'neocomplcache']
 let g:spf13_bundle_groups+=['python', 'php', 'python', 'javascript', 'haskell']
 let g:spf13_bundle_groups+=['ruby', 'go', 'twig', 'html', 'misc', 'twig', 'scala']
+
+" Fix for vim-airline, gvim
+if has("gui_running")
+    let g:airline_powerline_fonts=1
+endif
+
+" Fix to disable haskell conceal feature
+let g:haskell_conceal=0
