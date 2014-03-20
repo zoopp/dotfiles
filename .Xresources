@@ -1,9 +1,9 @@
 ! xft settings -----------------------------------------------------------------
-Xft.dpi       : 96
-Xft.antialias : true
-Xft.rgba      : rgb
-Xft.hinting   : slight
-Xft.lcdfilter : lcddefault
+!Xft.dpi       : 96
+!Xft.antialias : true
+!Xft.rgba      : rgb
+!Xft.hinting   : slight
+!Xft.lcdfilter : lcddefault
 
 ! urxvt settings ---------------------------------------------------------------
 URxvt*.depth    : 32
