@@ -1,3 +1,8 @@
+alias ls='ls --color=auto -h --group-directories-first'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 alias ssh_fenrir="ssh andrei.bisog@fenrir.info.uaic.ro"
 alias local_sqlplus="sqlplus zoopp/123456@192.168.56.101/orcl"
 alias diff="colordiff"
