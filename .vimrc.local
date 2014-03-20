@@ -26,6 +26,12 @@ vmap <down> <nop>
 vmap <left> <nop>
 vmap <right> <nop>
 
+" Vim stuff
+set number
+" Disable the stupid fag conceal 'feature'
+set cole=0
+autocmd FileType * setl cole=0
+
 " C++ specific settings
 let g:syntastic_cpp_compiler_options=' -std=c++11'  " Self explanatory
 let g:syntastic_cpp_check_header=1                  " Syntax check headers as well
@@ -35,18 +41,18 @@ let g:tex_flavor='latex'                            " Self explanatory
 
 " Python specific settings
 " let g:pymode_lint=0                               " Disable python-mode pylint
+au FileType python setl syntax=python
 
 " Haskell specific settings
 let g:haddock_browser='/usr/bin/chromium'
 
 " Eclim stuff (what a mess!)
-let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimCompletionMethod='omnifunc'
 if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
+  let g:neocomplcache_force_omni_patterns={}
 endif
-let g:neocomplcache_force_omni_patterns.java = '\k\.\k*'
-
-if !exists('g:neocomplcache_vim_completefuncs')
-    let g:neocomplcache_vim_completefuncs = {}
-endif
-let g:neocomplcache_vim_completefuncs.java = 'eclim#java#complete#CodeComplete'
+let g:neocomplcache_force_omni_patterns.java='\k\.\k*'
+let g:EclimTempFilesEnable=0
+let g:EclimProjectTreeAutoOpen=1
+let g:EclimProjectTreeExpandPathOnOpen=1
+let g:EclimProjectTreeSharedInstance=1
