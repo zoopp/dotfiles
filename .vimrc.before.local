@@ -1,6 +1,7 @@
-let g:spf13_bundle_groups=['general', 'programming', 'neocomplcache']
-let g:spf13_bundle_groups+=['python', 'php', 'python', 'javascript', 'haskell']
-let g:spf13_bundle_groups+=['ruby', 'go', 'twig', 'html', 'misc', 'twig', 'scala']
+" Define bundle groups
+let g:spf13_bundle_groups=['general', 'writing', 'youcompleteme', 'programming']
+let g:spf13_bundle_groups+=['python', 'haskell', 'javascript', 'html']
+let g:spf13_bundle_groups+=['misc',]
 
 " Fix for vim-airline, gvim
 if has("gui_running")
