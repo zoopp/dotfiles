@@ -32,6 +32,9 @@ set number
 set cole=0
 autocmd FileType * setl cole=0
 
+" YCM Stuff
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
 " C++ specific settings
 let g:syntastic_cpp_compiler_options=' -std=c++11'  " Self explanatory
 let g:syntastic_cpp_check_header=1                  " Syntax check headers as well
@@ -46,12 +49,8 @@ au FileType python setl syntax=python
 " Haskell specific settings
 let g:haddock_browser='/usr/bin/chromium'
 
-" Eclim stuff (what a mess!)
+" Eclim stuff
 let g:EclimCompletionMethod='omnifunc'
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns={}
-endif
-let g:neocomplcache_force_omni_patterns.java='\k\.\k*'
 let g:EclimTempFilesEnable=0
 let g:EclimProjectTreeAutoOpen=1
 let g:EclimProjectTreeExpandPathOnOpen=1
