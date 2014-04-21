@@ -1,6 +1,6 @@
 " Show only menu
 set guioptions=aem
-set guifont=Inconsolata\ 12
+set guifont=Inconsolata\ 11
 
 colorscheme molokai
 let g:airline_theme="molokai"
