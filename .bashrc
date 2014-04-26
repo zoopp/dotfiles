@@ -17,6 +17,10 @@ export PATH="~/.local/bin:$PATH"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp -Dswing.aatext=true -Dswing.plaf.metal.controlFont="Droid Sans" -Dswing.plaf.metal.userFont="Droid Sans"'
 export JAVA_FONTS='/usr/share/fonts/TTF'
 
+# Python stuff
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
 EDITOR=vim
 
 # Color man pages using less
