@@ -8,8 +8,8 @@
 ! urxvt settings ---------------------------------------------------------------
 URxvt*.depth    : 32
 
-URxvt*.font     : xft:Inconsolata:pixelsize=15
-URxvt*.boldFont : xft:Inconsolata:bold:pixelsize=15
+*.font     : xft:Inconsolata for Powerline:pixelsize=15
+*.boldFont : xft:Inconsolata for Powerline:bold:pixelsize=15
 
 URxvt*.background : [90]#000000
 URxvt*.foreground : White
