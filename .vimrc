@@ -32,11 +32,11 @@
             Plugin 'SirVer/ultisnips'                 " Snippets engine
             Plugin 'honza/vim-snippets'               " Actual snippets
             Plugin 'tpope/vim-fugitive'               " Vim git integration
+            Plugin 'godlygeek/tabular'                " Tabular alignment
         " }
 
         " Python {
-            Plugin 'hdima/python-syntax'              " Better syntax highlighting
-            Plugin 'jmcantrell/vim-virtualenv'        " Python Virtualenv support
+            Plugin 'klen/python-mode'                 " Better Python support
         " }
 
         " Javascript {
@@ -197,7 +197,7 @@
             map <C-e> <plug>NERDTreeTabsToggle<CR>
             let g:nerdtree_tabs_open_on_gui_startup=0
             let g:NERDTreeCaseSensitiveSort=1
-            let g:NERDTreeIgnore=['\~$'. '\pyc', '__pycache__']
+            let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
             let g:NERDTreeBookmarksFile='~/.vim/NERDTreeBookmarks'
             let g:NERDTreeMouseMode=2
         " }
@@ -222,10 +222,31 @@
             " C++ specific settings
             let g:syntastic_cpp_compiler_options=' -std=c++11'  " Self explanatory
             let g:syntastic_cpp_check_header=1                  " Syntax check headers as well
+            let g:syntastic_python_flake8_args='--ignore=E501,E221'
         " }
 
-        " python-syntax {
-            let python_highlight_all=1
+        " Python-mode {
+            " Fixes interference with YouCompleteMe
+            let g:pymode=0
+            let g:pymode_virtualenv=1                           " Autodetect virtualenv
+            let g:pymode_lint_write=0
+        " }
+
+        " Tabularize {
+            nmap <Leader>a& :Tabularize /&<CR>
+            vmap <Leader>a& :Tabularize /&<CR>
+            nmap <Leader>a= :Tabularize /=<CR>
+            vmap <Leader>a= :Tabularize /=<CR>
+            nmap <Leader>a: :Tabularize /:<CR>
+            vmap <Leader>a: :Tabularize /:<CR>
+            nmap <Leader>a:: :Tabularize /:\zs<CR>
+            vmap <Leader>a:: :Tabularize /:\zs<CR>
+            nmap <Leader>a, :Tabularize /,<CR>
+            vmap <Leader>a, :Tabularize /,<CR>
+            nmap <Leader>a,, :Tabularize /,\zs<CR>
+            vmap <Leader>a,, :Tabularize /,\zs<CR>
+            nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+            vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         " }
 
         " Numbers {
