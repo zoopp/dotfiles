@@ -1,2 +1,0 @@
-# Specifies the workspace directory to use
-osgi.instance.area.default=@user.home/Public/eclipse/workspace

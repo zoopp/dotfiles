@@ -1,31 +1,3 @@
-! xft settings -----------------------------------------------------------------
-!Xft.dpi       : 96
-!Xft.antialias : true
-!Xft.rgba      : rgb
-!Xft.hinting   : slight
-!Xft.lcdfilter : lcddefault
-
-! urxvt settings ---------------------------------------------------------------
-URxvt*.depth    : 32
-
-*.font     : xft:Inconsolata for Powerline:pixelsize=15
-*.boldFont : xft:Inconsolata for Powerline:bold:pixelsize=15
-
-URxvt*.background : [90]#000000
-URxvt*.foreground : White
-*color4           : RoyalBlue
-*color12          : RoyalBlue
-
-URxvt*.scrollBar : false
-URxvt*.iso14755  : false
-
-URxvt*.perl-ext-common      : default,clipboard,url-select,keyboard-select
-URxvt*.url-select.launcher  : /usr/bin/chromium
-URxvt*.url-select.underline : true
-
-URxvt*.keysym.C-C : perl:clipboard:copy
-URxvt*.keysym.C-V : perl:clipboard:paste
-
 ! xscreensaver settings --------------------------------------------------------
 ! font settings
 xscreensaver.Dialog.headingFont : xft:Ubuntu:*
