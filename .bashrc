@@ -11,6 +11,9 @@
 # Load color constants if available
 [ -r ".bash_colors" ] && source .bash_colors
 
+# For ccache
+export PATH="/usr/lib/ccache/bin/:$PATH"
+
 EDITOR=vim
 
 PS1="\[${COLOR_BLUE}\]\n┌─┤\[${COLOR_BOLD}\]\t\[${COLOR_RESET}${COLOR_BLUE}\]│"\
