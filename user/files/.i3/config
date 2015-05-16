@@ -1,0 +1,179 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font xft:Droid Sans Mono 10
+
+
+# ----------------------------------------------------------------------------------------------------
+# Programs
+# ----------------------------------------------------------------------------------------------------
+set $locker i3lock -b -d -I 5 -c 000000
+set $dmenu j4-dmenu-desktop --display-binary --dmenu='dmenu -i -fn "Droid Sans Mono-10" -p "$" -l 5 -hist ~/.dmenu-history'
+
+set $volume_up amixer -D pulse set Master 5%+ unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+set $volume_down amixer -D pulse set Master 5%- unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+set $volume_toggle_mute amixer -D pulse set Master toggle
+
+
+# ----------------------------------------------------------------------------------------------------
+# Keybinds
+# ----------------------------------------------------------------------------------------------------
+set $super Mod4
+set $mod Mod1
+
+# start applications
+bindsym $super+Return exec --no-startup-id i3-sensible-terminal
+bindsym $super+o      exec --no-startup-id $dmenu
+# Use Mouse+$super to drag floating windows to their wanted position
+floating_modifier $super
+
+# kill focused window
+bindsym $super+Shift+c kill
+
+# change focus
+bindsym $super+h focus left
+bindsym $super+j focus down
+bindsym $super+k focus up
+bindsym $super+l focus right
+
+# move focused window
+bindsym $super+Shift+h move left
+bindsym $super+Shift+j move down
+bindsym $super+Shift+k move up
+bindsym $super+Shift+l move right
+
+# enter fullscreen mode for the focused container
+bindsym $super+f fullscreen toggle
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $super+s layout stacking
+bindsym $super+t layout tabbed
+bindsym $super+e layout toggle split
+
+# toggle tiling / floating
+bindsym $super+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $super+space focus mode_toggle
+
+# focus the parent container
+bindsym $super+p focus parent
+
+# focus the child container
+bindsym $super+c focus child
+
+# switch to workspace
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+bindsym $super+7 workspace 7
+bindsym $super+8 workspace 8
+bindsym $super+9 workspace 9
+bindsym $super+0 workspace 10
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+7 move container to workspace 7
+bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+9 move container to workspace 9
+bindsym $super+Shift+0 move container to workspace 10
+
+# scratchpad bindings
+bindsym $super+Shift+Tab move scratchpad
+bindsym $super+Tab scratchpad show
+
+# reload the configuration file
+#bindsym $super+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+# These bindings trigger as soon as you enter the resize mode
+mode "resize" {
+        bindsym h resize shrink width  10 px or 10 ppt
+        bindsym j resize grow   height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow   width  10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $super+r mode "resize"
+
+# audio control
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id $volume_down
+bindsym XF86AudioMute        exec --no-startup-id $volume_toggle_mute
+
+# screen lock
+bindsym $super+$mod+l exec --no-startup-id $locker
+
+# brightness control -- figure out why there is lag
+#bindsym XF86MonBrightnessUp   exec --no-startup-id "xbacklight -inc +25% -time 0"
+#bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec +25% -time 0"
+
+
+# ----------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+set $color_background #1a1a1a
+set $color_border     #ff8400
+bar {
+    status_command python ~/.i3/scripts/i3status.py #i3status -c ~/.i3/i3status.conf
+    position       top
+    colors {
+        background $color_background
+        statusline $color_border
+
+        # colorclass      <border>      <background>       <text>
+        focused_workspace $color_border $color_background  #FFFFFF
+    }
+}
+
+# hide titlebars, 1pixel borders
+new_window pixel 0
+new_float pixel 0
+for_window [class="^.*"] border pixel 1
+
+# border colors           border      background      text        indicator
+client.focused            #9999aa     $color_border   #ffffff     #ff005b
+client.unfocused          #1C1C1C     #1C1C1C         #ffffff     #1C1C1C
+client.urgent             #990000     #990000         #ffffff     #990000
+client.focused_inactive   #1C1C1C     #1C1C1C         #ffffff     #1C1C1C
+
+
+# ----------------------------------------------------------------------------------------------------
+# Startup
+# ----------------------------------------------------------------------------------------------------
+exec_always --no-startup-id feh --bg-scale ~/.i3/assets/background.png
+exec --no-startup-id xss-lock -- $locker
+exec --no-startup-id nm-applet
+exec --no-startup-id compton
+exec --no-startup-id thunderbird
+exec --no-startup-id redshift-gtk
+
+
+# vim:filetype=i3

@@ -23,6 +23,7 @@
             Plugin 'spf13/vim-colors'                 " Some colorschemes
             Plugin 'flazz/vim-colorschemes'           " Some more colorschemes
             Plugin 'altercation/vim-colors-solarized' " Solarized colorscheme
+            Plugin 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
         " }
 
         " General Programming {
@@ -33,6 +34,7 @@
             Plugin 'honza/vim-snippets'               " Actual snippets
             Plugin 'tpope/vim-fugitive'               " Vim git integration
             Plugin 'godlygeek/tabular'                " Tabular alignment
+            Plugin 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
         " }
 
         " Python {
@@ -56,6 +58,10 @@
             Plugin 'Shougo/vimproc.vim'               " Dependency of ghcmod-vim
             Plugin 'eagletmt/ghcmod-vim'              " Better Haskell support, dependency of neco-ghc
             Plugin 'eagletmt/neco-ghc'                " Haskell code completer
+        " }
+
+        " Haskell {
+            Plugin 'vim-scripts/clips.vim'
         " }
     " }
     call vundle#end()
