@@ -157,6 +157,7 @@ bar {
 new_window pixel 0
 new_float pixel 0
 for_window [class="^.*"] border pixel 1
+for_window [class="Player"] floating enable
 
 # border colors           border      background      text        indicator
 client.focused            #9999aa     $color_border   #ffffff     #ff005b
