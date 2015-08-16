@@ -12,37 +12,29 @@
     " Plugins {
         Plugin 'gmarik/Vundle.vim'
         " General {
-            Plugin 'bling/vim-airline'                " Nicer status bar
             Plugin 'scrooloose/nerdtree'              " A file browser tree
-            Plugin 'mhinz/vim-signify'                " VCS changes indicator
-            Plugin 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
-            Plugin 'flazz/vim-colorschemes'           " Some more colorschemes
-
+            Plugin 'jistr/vim-nerdtree-tabs'          " Improvements for nerdree
+            Plugin 'spf13/vim-autoclose'              " Autoclose
+            Plugin 'Lokaltog/powerline', {'rtp': '/powerline/bindings/vim'} " Nicer status bar
             Plugin 'Lokaltog/vim-easymotion'          " Vimium-like behaviour in vim
             Plugin 'vim-scripts/restore_view.vim'     " Restores the cursor position
-
-            Plugin 'Shougo/vimproc.vim'               " TODO
-            Plugin 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
-            Plugin 'dhruvasagar/vim-table-mode'       " Easier table manipulation
-            " Plugin 'ryanoasis/vim-devicons'           " Eyecandy
-
+            Plugin 'mhinz/vim-signify'                " VCS changes indicator
+            Plugin 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
+            Plugin 'spf13/vim-colors'                 " Some colorschemes
+            Plugin 'flazz/vim-colorschemes'           " Some more colorschemes
+            Plugin 'altercation/vim-colors-solarized' " Solarized colorscheme
+            Plugin 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
         " }
 
         " General Programming {
-            Plugin 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
-            Plugin 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
-            Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting
-
-            Plugin 'Valloric/YouCompleteMe'           " Completion engine
             Plugin 'scrooloose/syntastic'             " Syntax checking plugin
             Plugin 'majutsushi/tagbar'                " Sourcecode tag browser
-
-            Plugin 'spf13/vim-autoclose'              " Autoclose matching pairs
+            Plugin 'Valloric/YouCompleteMe'           " Completion engine
             Plugin 'SirVer/ultisnips'                 " Snippets engine
             Plugin 'honza/vim-snippets'               " Actual snippets
-
             Plugin 'tpope/vim-fugitive'               " Vim git integration
             Plugin 'godlygeek/tabular'                " Tabular alignment
+            Plugin 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
         " }
 
         " Python {
@@ -50,14 +42,26 @@
         " }
 
         " Javascript {
-            Plugin 'pangloss/vim-javascript'          " Better Javascript syntax and indent
-            Plugin 'elzr/vim-json'                    " Better JSON support
+            Plugin 'pangloss/vim-javascript'          " Better Javascript support in vim
+            Plugin 'elzr/vim-json'                    " Better JSON support in vim
         " }
 
         " HTML {
             Plugin 'amirh/HTML-AutoCloseTag'          " Autoclose HTML tags
-            Plugin 'hail2u/vim-css3-syntax'           " Add css3 syntax highlighting
             Plugin 'gorodinskiy/vim-coloresque'       " CSS and HTML color preview
+            Plugin 'hail2u/vim-css3-syntax'           " Add css3 syntax highlighting
+        "" }
+
+        " Haskell {
+            Plugin 'dag/vim2hs'                       " Better Haskell support in vim
+            Plugin 'twinside/vim-haskellFold'         " Better Haskell code folding
+            Plugin 'Shougo/vimproc.vim'               " Dependency of ghcmod-vim
+            Plugin 'eagletmt/ghcmod-vim'              " Better Haskell support, dependency of neco-ghc
+            Plugin 'eagletmt/neco-ghc'                " Haskell code completer
+        " }
+
+        " Haskell {
+            Plugin 'vim-scripts/clips.vim'
         " }
     " }
     call vundle#end()
@@ -89,22 +93,23 @@
     " Appearance {
         syntax on                                     " Turn on syntax highlighting
         set background=dark                           " Assume a dark background
-        colorscheme badwolf
+
+        " We're going to use solarized as default color scheme for vim
+        let g:solarized_termcolors=256
+        let g:solarized_termtrans=1
+        let g:solarized_contrast='normal'
+        let g:Solarized_visibility='normal'
+        color solarized
 
         set number                                    " Always show line numbers
         highlight clear SignColumn                    " SignColumn should match background
         highlight clear LineNr                        " Same goes for line number column
 
-        set foldenable                                " Enable folding
         set cursorline                                " Highlight current line
         set laststatus=2                              " Always display statusline
         set showmatch                                 " Show matching brackets
         set incsearch                                 " Find as you type search
         set hlsearch                                  " Highlight search terms
-
-        " Highlight problematic whitespace
-        set list
-        set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
     " }
 
     " Functionality {
@@ -115,9 +120,13 @@
         set whichwrap=b,s,h,l,<,>,[,]                 " Backspace and cursor keys wrap too
         set scrolljump=5                              " Lines to scroll when curosr leaves screen
         set scrolloff=3                               " Minimum lines to keep above and below cursor
+        set foldenable                                " Autofold code
         set splitright                                " Puts new vsplit windows to the right of the current
         set splitbelow                                " Puts new split windows to the bottom of the current
-        set ttyfast                                   " Always indicate a fast terminal connection
+
+        " Highlight problematic whitespace
+        set list
+        set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
     " }
 
     " Formatting {
@@ -151,11 +160,15 @@
         vmap <left> <nop>
         vmap <right> <nop>
 
-        " Easier moving between splits; conflics with digraph mapping of <C-K>
+        " Easier moving between splitsConflics with digraph mapping of <C-K>
         map <C-J> <C-W>j
         map <C-K> <C-W>k
         map <C-L> <C-W>l
         map <C-H> <C-W>h
+
+        " TODO: Easier moving between tabs?
+        " TODO: Easier size window manipulation
+        map <leader>= <C-W>=
 
         " Wrapped lines go down/up to next row rather than to the next line in file
         noremap j gj
@@ -176,30 +189,23 @@
         vnoremap < <gv
         vnoremap > >gv
 
-        " For when you forget to edit the file with su permissions
+        " For when you forgot to edit the file with su permissions
         cmap w!! w !sudo tee % >/dev/null
     " }
 
     " Plugins {
-        " Airline {
-            let g:airline_powerline_fonts=1
-        " }
-
         " AutoCloseTag {
             " Make AutoCloseTag work on xml and xhtml files
-            au FileType xhtml,xml ru ftplugin/html_autoclosetag.vim  
+            au FileType xhtml,xml ru ftplugin/html_autoclosetag.vim
         " }
 
         " NERDTree {
-            map <C-e> :NERDTreeToggle<CR>
+            map <C-e> <plug>NERDTreeTabsToggle<CR>
+            let g:nerdtree_tabs_open_on_gui_startup=0
             let g:NERDTreeCaseSensitiveSort=1
             let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
             let g:NERDTreeBookmarksFile='~/.vim/NERDTreeBookmarks'
             let g:NERDTreeMouseMode=2
-        " }
-
-        " Numbers {
-            let g:enable_numbers=1
         " }
 
         " Tagbar {
@@ -220,37 +226,52 @@
 
         " Syntastic {
             " C++ specific settings
-            let g:syntastic_cpp_compiler_options=' -std=c++11'
-            let g:syntastic_cpp_check_header=1
+            let g:syntastic_cpp_compiler_options=' -std=c++11'  " Self explanatory
+            let g:syntastic_cpp_check_header=1                  " Syntax check headers as well
             let g:syntastic_python_flake8_args='--ignore=E501,E221'
         " }
 
         " Python-mode {
             " Fixes interference with YouCompleteMe
-            let g:pymode=1
+            let g:pymode=0
             let g:pymode_virtualenv=1                           " Autodetect virtualenv
             let g:pymode_lint_write=0
-            let g:pymode_rope = 0                               " Disable rope for now
-            let g:pymode_rope_complete_on_dot = 0               " Fixes interaction with YCM
         " }
 
         " Tabularize {
-            " nmap <Leader>a& :Tabularize /&<CR>
-            " vmap <Leader>a& :Tabularize /&<CR>
-            " nmap <Leader>a= :Tabularize /=<CR>
-            " vmap <Leader>a= :Tabularize /=<CR>
-            " nmap <Leader>a: :Tabularize /:<CR>
-            " vmap <Leader>a: :Tabularize /:<CR>
-            " nmap <Leader>a:: :Tabularize /:\zs<CR>
-            " vmap <Leader>a:: :Tabularize /:\zs<CR>
-            " nmap <Leader>a, :Tabularize /,<CR>
-            " vmap <Leader>a, :Tabularize /,<CR>
-            " nmap <Leader>a,, :Tabularize /,\zs<CR>
-            " vmap <Leader>a,, :Tabularize /,\zs<CR>
-            " nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-            " vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+            nmap <Leader>a& :Tabularize /&<CR>
+            vmap <Leader>a& :Tabularize /&<CR>
+            nmap <Leader>a= :Tabularize /=<CR>
+            vmap <Leader>a= :Tabularize /=<CR>
+            nmap <Leader>a: :Tabularize /:<CR>
+            vmap <Leader>a: :Tabularize /:<CR>
+            nmap <Leader>a:: :Tabularize /:\zs<CR>
+            vmap <Leader>a:: :Tabularize /:\zs<CR>
+            nmap <Leader>a, :Tabularize /,<CR>
+            vmap <Leader>a, :Tabularize /,<CR>
+            nmap <Leader>a,, :Tabularize /,\zs<CR>
+            vmap <Leader>a,, :Tabularize /,\zs<CR>
+            nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+            vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+        " }
+
+        " Numbers {
+            let g:enable_numbers=1
+        " }
+
+        " Eclim {
+            let g:EclimCompletionMethod='omnifunc'
+            let g:EclimTempFilesEnable=0
+            let g:EclimProjectTreeAutoOpen=1
+            let g:EclimProjectTreeExpandPathOnOpen=1
+            let g:EclimProjectTreeSharedInstance=1
+        " }
+
+        " Neco-ghc {
+            autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
         " }
     " }
+
 " }
 
 

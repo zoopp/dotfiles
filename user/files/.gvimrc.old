@@ -2,4 +2,5 @@
 set guioptions=aem
 set guifont=Inconsolata\ for\ Powerline\ 11
 
-colorscheme badwolf
+colorscheme molokai
+let g:airline_theme="molokai"
