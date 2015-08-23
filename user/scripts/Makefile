@@ -6,7 +6,6 @@
 vim-base:
 	mkdir -pv ~/.vim/view
 	mkdir -pv ~/.vim/undodir
-	rm -rf ~/.vim/bundle/Vundle.vim
 	git clone -q https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
 
