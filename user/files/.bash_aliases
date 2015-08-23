@@ -8,3 +8,6 @@ alias noise="play -c2 -n synth whitenoise band -n 100 24 band -n 200 100 gain +2
 
 alias tree='tree -C'
 alias nemo="nemo --no-desktop"
+
+# Load local aliases if available
+[ -r ".bash_aliases.local" ] && source .bash_aliases.local

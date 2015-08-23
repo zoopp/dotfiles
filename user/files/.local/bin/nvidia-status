@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -e /proc/acpi/bbswitch ]; then
+    cat /proc/acpi/bbswitch
+else
+    echo "bbswitch not installed"
+fi

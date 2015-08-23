@@ -11,27 +11,22 @@
 # Load color constants if available
 [ -r ".bash_colors" ] && source .bash_colors
 
-# Local bin folder
-export PATH="~/.local/bin/:$PATH"
+# Eval dircolors if available
+[ -f ".dircolors" ] && eval `dircolors .dircolors`
 
-# Use CCACHE
-# export PATH="/usr/lib/ccache/bin/:$PATH"
-# export USE_CCAHE=1
-
-# less - sourcecode highlight
-export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+# Less - sourcecode highlight
+if [ -r "/usr/bin/src-hilite-lesspipe.sh" ]; then
+    export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+fi
 export LESS=' -R '
 
-# Java font fix
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
-
-
 export EDITOR=vim
-export TERMINAL=terminology
-
+export TERMINAL=termite
 
 shopt -s checkwinsize
 
-
 PS1="\[${COLOR_BLUE}\]\n┌─┤\[${COLOR_BOLD}\]\t\[${COLOR_RESET}${COLOR_BLUE}\]│"\
 "\u@\h:\[${COLOR_CYAN}\]\w\n\[${COLOR_BLUE}\]└──────────╼\[${COLOR_RESET}\] "
+
+# Load local .bashrc if available
+[ -r ".bashrc.local" ] && source .bashrc.local
