@@ -14,6 +14,7 @@
         " General {
             Plugin 'bling/vim-airline'                " Nicer status bar
             Plugin 'scrooloose/nerdtree'              " A file browser tree
+            Plugin 'jistr/vim-nerdtree-tabs'          " Better NERDTree integration
             Plugin 'mhinz/vim-signify'                " VCS changes indicator
             Plugin 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
             Plugin 'flazz/vim-colorschemes'           " Some more colorschemes
@@ -131,7 +132,8 @@
     " }
 
     " Vim Key (re)mappings {
-        let mapleader=','
+        " Map leader key to space
+        let mapleader="\<Space>"
 
         " Disable arrow keys in normal mode
         map <up> <nop>
@@ -191,7 +193,7 @@
         " }
 
         " NERDTree {
-            map <C-e> :NERDTreeToggle<CR>
+            map <C-e> :NERDTreeTabsToggle<CR>
             let g:NERDTreeCaseSensitiveSort=1
             let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
             let g:NERDTreeBookmarksFile='~/.vim/NERDTreeBookmarks'
@@ -216,6 +218,10 @@
             let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
             let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+        " }
+
+        " vim-cpp-enhanced-highlight {
+            let g:cpp_class_scope_highlight = 1
         " }
 
         " Syntastic {
