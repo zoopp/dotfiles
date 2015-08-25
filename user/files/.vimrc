@@ -24,6 +24,7 @@
 
             Plugin 'Shougo/vimproc.vim'               " TODO
             Plugin 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
+            Plugin 'FelikZ/ctrlp-py-matcher'          " Python matcher for CtrlP (better performance)
             Plugin 'dhruvasagar/vim-table-mode'       " Easier table manipulation
             " Plugin 'ryanoasis/vim-devicons'           " Eyecandy
 
@@ -35,6 +36,7 @@
             Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting
 
             Plugin 'Valloric/YouCompleteMe'           " Completion engine
+            Plugin 'rdnetto/YCM-Generator'            " YCM extra conf generator
             Plugin 'scrooloose/syntastic'             " Syntax checking plugin
             Plugin 'majutsushi/tagbar'                " Sourcecode tag browser
 
@@ -185,6 +187,33 @@
     " Plugins {
         " Airline {
             let g:airline_powerline_fonts=1
+            let g:airline#extensions#tabline#enabled = 1
+            let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+            " Buffer switching shortcuts
+            nmap <leader>1 <Plug>AirlineSelectTab1
+            nmap <leader>2 <Plug>AirlineSelectTab2
+            nmap <leader>3 <Plug>AirlineSelectTab3
+            nmap <leader>4 <Plug>AirlineSelectTab4
+            nmap <leader>5 <Plug>AirlineSelectTab5
+            nmap <leader>6 <Plug>AirlineSelectTab6
+            nmap <leader>7 <Plug>AirlineSelectTab7
+            nmap <leader>8 <Plug>AirlineSelectTab8
+            nmap <leader>9 <Plug>AirlineSelectTab9
+        " }
+
+        " CtrlP {
+            " Don't limit the index size, custom searcher, custom matcher
+            let g:ctrlp_max_files=0
+            let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+                  \ --ignore .git
+                  \ --ignore .svn
+                  \ --ignore .hg
+                  \ --ignore .DS_Store
+                  \ --ignore "**/*.pyc"
+                  \ --ignore "**/*.o"
+                  \ -g ""'
+            let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
         " }
 
         " AutoCloseTag {
@@ -205,7 +234,7 @@
         " }
 
         " Tagbar {
-            map <leader>tt :TagbarToggle<CR>
+            map <leader>tb :TagbarToggle<CR>
         " }
 
         " YouCompleteMe {
@@ -218,6 +247,10 @@
             let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
             let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
+            " GoTo Mappings
+            map <leader>ji :YcmCompleter GoToDefinition<CR>
+            map <leader>jd :YcmCompleter GoToDeclaration<CR>
         " }
 
         " vim-cpp-enhanced-highlight {
