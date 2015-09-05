@@ -4,11 +4,16 @@
 ├── user
 │   ├── files
 │   │   ├── .config
+│   │   │   ├── beets
+│   │   │   │   └── config.yaml
 │   │   │   ├── gtk-3.0
 │   │   │   │   └── settings.ini
+│   │   │   ├── mpd
+│   │   │   │   └── mpd.conf
 │   │   │   ├── termite
 │   │   │   │   └── config
 │   │   │   ├── compton.conf
+│   │   │   ├── modprobed-db.conf
 │   │   │   └── redshift.conf
 │   │   ├── .i3
 │   │   │   ├── assets
@@ -28,6 +33,7 @@
 │   │   ├── .dircolors
 │   │   ├── .gtkrc-2.0
 │   │   ├── .gvimrc
+│   │   ├── .nvimrc -> .vimrc
 │   │   ├── .vimrc
 │   │   ├── .xinitrc
 │   │   └── .Xresources
@@ -36,3 +42,5 @@
 │   ├── deploy.sh
 │   └── .gitignore
 └── README
+
+14 directories, 29 files

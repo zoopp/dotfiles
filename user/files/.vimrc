@@ -33,7 +33,6 @@
         " General Programming {
             Plugin 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
             Plugin 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
-            Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting
 
             Plugin 'Valloric/YouCompleteMe'           " Completion engine
             Plugin 'rdnetto/YCM-Generator'            " YCM extra conf generator
@@ -46,6 +45,12 @@
 
             Plugin 'tpope/vim-fugitive'               " Vim git integration
             Plugin 'godlygeek/tabular'                " Tabular alignment
+        " }
+
+        " C++ {
+            Plugin 'jalcine/cmake.vim'                " CMake
+            Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting
+            Plugin 'rhysd/vim-clang-format'           " Clang format
         " }
 
         " Python {
@@ -251,6 +256,10 @@
             " GoTo Mappings
             map <leader>ji :YcmCompleter GoToDefinition<CR>
             map <leader>jd :YcmCompleter GoToDeclaration<CR>
+        " }
+
+        " clang-format {
+            let g:clang_format#detect_style_file = 1
         " }
 
         " vim-cpp-enhanced-highlight {

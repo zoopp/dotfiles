@@ -1,0 +1,12 @@
+plugins: chroma fromfilename fetchart ftintitle lastgenre lyrics mbsync metasync replaygain scrub mpdupdate missing
+
+ui:
+    color: yes
+
+import:
+    group_albums: yes
+
+replaygain:
+    backend: gstreamer
+
+
