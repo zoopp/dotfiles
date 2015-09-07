@@ -1,4 +1,4 @@
-plugins: chroma fromfilename fetchart ftintitle lastgenre lyrics mbsync metasync replaygain scrub mpdupdate missing
+plugins: chroma fromfilename fetchart ftintitle lastgenre lyrics mbsync metasync replaygain scrub missing
 
 ui:
     color: yes
