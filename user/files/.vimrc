@@ -26,8 +26,6 @@
             Plugin 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
             Plugin 'FelikZ/ctrlp-py-matcher'          " Python matcher for CtrlP (better performance)
             Plugin 'dhruvasagar/vim-table-mode'       " Easier table manipulation
-            " Plugin 'ryanoasis/vim-devicons'           " Eyecandy
-
         " }
 
         " General Programming {
@@ -48,7 +46,6 @@
         " }
 
         " C++ {
-            Plugin 'jalcine/cmake.vim'                " CMake
             Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting
             Plugin 'rhysd/vim-clang-format'           " Clang format
         " }
@@ -268,7 +265,7 @@
 
         " Syntastic {
             " C++ specific settings
-            let g:syntastic_cpp_compiler_options=' -std=c++11'
+            let g:syntastic_cpp_compiler_options=' -std=c++14'
             let g:syntastic_cpp_check_header=1
             let g:syntastic_python_flake8_args='--ignore=E501,E221'
         " }
