@@ -1,71 +1,59 @@
-" Environemnt {
-    set nocompatible " Drop Vi comptability
-" }
+set nocompatible " Drop Vi comptability
 
-" Vundle & Plugin management {
-    " Setup Vundle Support {
-        filetype off                      " Required by Vundle while doing its stuff
-        set rtp+=~/.vim/bundle/Vundle.vim " Include Vundle in runtime path
-    " }
-
-    call vundle#begin()
+" Plugin management {
+    call plug#begin()
     " Plugins {
-        Plugin 'gmarik/Vundle.vim'
         " General {
-            Plugin 'bling/vim-airline'                " Nicer status bar
-            Plugin 'scrooloose/nerdtree'              " A file browser tree
-            Plugin 'jistr/vim-nerdtree-tabs'          " Better NERDTree integration
-            Plugin 'mhinz/vim-signify'                " VCS changes indicator
-            Plugin 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
-            Plugin 'flazz/vim-colorschemes'           " Some more colorschemes
+            Plug 'bling/vim-airline'                " Nicer status bar
+            Plug 'scrooloose/nerdtree'              " A file browser tree
+            Plug 'jistr/vim-nerdtree-tabs'          " Better NERDTree integration
+            Plug 'mhinz/vim-signify'                " VCS changes indicator
+            Plug 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
 
-            Plugin 'Lokaltog/vim-easymotion'          " Vimium-like behaviour in vim
-            Plugin 'vim-scripts/restore_view.vim'     " Restores the cursor position
+            Plug 'flazz/vim-colorschemes'           " Some more colorschemes
 
-            Plugin 'Shougo/vimproc.vim'               " TODO
-            Plugin 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
-            Plugin 'FelikZ/ctrlp-py-matcher'          " Python matcher for CtrlP (better performance)
-            Plugin 'dhruvasagar/vim-table-mode'       " Easier table manipulation
+            Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
+            Plug 'FelikZ/ctrlp-py-matcher'          " Python matcher for CtrlP (better performance)
+            Plug 'vim-scripts/restore_view.vim'     " Restores the cursor position
         " }
 
         " General Programming {
-            Plugin 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
-            Plugin 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
+            Plug 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
+            Plug 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
 
-            Plugin 'Valloric/YouCompleteMe'           " Completion engine
-            Plugin 'rdnetto/YCM-Generator'            " YCM extra conf generator
-            Plugin 'scrooloose/syntastic'             " Syntax checking plugin
-            Plugin 'majutsushi/tagbar'                " Sourcecode tag browser
+            " Completion Engine
+            Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer'}
+            Plug 'scrooloose/syntastic'             " Syntax checking plugin
+            Plug 'majutsushi/tagbar'                " Sourcecode tag browser
 
-            Plugin 'spf13/vim-autoclose'              " Autoclose matching pairs
-            Plugin 'SirVer/ultisnips'                 " Snippets engine
-            Plugin 'honza/vim-snippets'               " Actual snippets
+            Plug 'Raimondi/delimitMate'             " Autoclose matching pairs
+            Plug 'SirVer/ultisnips'                 " Snippets engine
+            Plug 'honza/vim-snippets'               " Actual snippets
 
-            Plugin 'tpope/vim-fugitive'               " Vim git integration
-            Plugin 'godlygeek/tabular'                " Tabular alignment
+            Plug 'godlygeek/tabular'                " Tabular alignment
         " }
 
         " C++ {
-            Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting
-            Plugin 'rhysd/vim-clang-format'           " Clang format
+            Plug 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting
+            Plug 'rhysd/vim-clang-format'           " Clang format
         " }
 
         " Python {
-            Plugin 'klen/python-mode'                 " Better Python support
+            Plug 'klen/python-mode'                 " Better Python support
         " }
 
         " Javascript {
-            Plugin 'pangloss/vim-javascript'          " Better Javascript syntax and indent
-            Plugin 'elzr/vim-json'                    " Better JSON support
+            Plug 'pangloss/vim-javascript'          " Better Javascript syntax and indent
+            Plug 'elzr/vim-json'                    " Better JSON support
         " }
 
         " HTML {
-            Plugin 'amirh/HTML-AutoCloseTag'          " Autoclose HTML tags
-            Plugin 'hail2u/vim-css3-syntax'           " Add css3 syntax highlighting
-            Plugin 'gorodinskiy/vim-coloresque'       " CSS and HTML color preview
+            Plug 'amirh/HTML-AutoCloseTag'          " Autoclose HTML tags
+            Plug 'hail2u/vim-css3-syntax'           " Add css3 syntax highlighting
+            Plug 'gorodinskiy/vim-coloresque'       " CSS and HTML color preview
         " }
     " }
-    call vundle#end()
+    call plug#end()
 " }
 
 " Settings {
