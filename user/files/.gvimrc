@@ -1,5 +1,5 @@
 " Show only menu
 set guioptions=ae
-set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
+set guifont=Inconsolata\ for\ Powerline\ 11
 
 colorscheme badwolf

@@ -225,6 +225,20 @@ set nocompatible " Drop Vi comptability
 
         " Tagbar {
             map <leader>tb :TagbarToggle<CR>
+            let g:tagbar_type_markdown = {
+                \ 'ctagstype': 'markdown',
+                \ 'ctagsbin' : 'markdown2ctags',
+                \ 'ctagsargs' : '-f - --sort=yes',
+                \ 'kinds' : [
+                    \ 's:sections',
+                    \ 'i:images'
+                \ ],
+                \ 'sro' : '|',
+                \ 'kind2scope' : {
+                    \ 's' : 'section',
+                \ },
+                \ 'sort': 0,
+            \ }
         " }
 
         " YouCompleteMe {
