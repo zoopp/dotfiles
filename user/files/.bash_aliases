@@ -8,7 +8,7 @@ alias noise="play -c2 -n synth whitenoise band -n 100 24 band -n 200 100 gain +2
 
 alias nemo="nemo --no-desktop"
 
-alias ld_primus_steam="LD_PRELOAD='/usr/lib/libstdc++.so.6:/usr/lib/libgcc_s.so.1:/usr/lib/libxcb.so.1:/usr/lib/libasound.so.2' primusrun steam"
+alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # Load local aliases if available
 [ -r ".bash_aliases.local" ] && source .bash_aliases.local
