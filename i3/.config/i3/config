@@ -142,7 +142,7 @@ bindsym $super+$mod+l exec --no-startup-id $locker
 set $color_background #1a1a1a
 set $color_border     #ff8400
 bar {
-    status_command python ~/.i3/scripts/i3status.py #i3status -c ~/.i3/i3status.conf
+    status_command python ~/.config/i3/scripts/i3status.py
     position       top
     colors {
         background $color_background
