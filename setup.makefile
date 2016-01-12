@@ -1,17 +1,15 @@
 .DEFAULT_GOAL=all
 
+
 # ----------------------------------------------------------------------------------------------------
 # ViM
-.PHONY: vim-base
-vim-base:
+.PHONY: setup-vim
+setup-vim:
 	mkdir -pv ~/.vim/view
 	mkdir -pv ~/.vim/undodir
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	vim +PlugInstall +qall
-
-.PHONY: setup-vim
-setup-vim: vim-base
 
 
 # ----------------------------------------------------------------------------------------------------
