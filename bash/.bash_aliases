@@ -10,5 +10,5 @@ alias nemo="nemo --no-desktop"
 
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 
-# Load local aliases if available
+# If available, load local .bash_aliases
 [ -r ".bash_aliases.local" ] && source .bash_aliases.local
