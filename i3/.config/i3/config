@@ -171,7 +171,7 @@ client.focused_inactive   #1C1C1C     #1C1C1C         #ffffff     #1C1C1C
 # ----------------------------------------------------------------------------------------------------
 # Startup
 # ----------------------------------------------------------------------------------------------------
-exec_always --no-startup-id feh --bg-scale ~/.i3/assets/background.png
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/assets/background.png
 exec --no-startup-id xss-lock -- $locker
 exec --no-startup-id nm-applet
 exec --no-startup-id compton
