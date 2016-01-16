@@ -5,7 +5,7 @@
   \.png$
   \.jpg$
 
-/usr/bin/qbittorrent %U %F
+/usr/bin/qbittorrent %U
   ^magnet:
   \.torrent$
 
