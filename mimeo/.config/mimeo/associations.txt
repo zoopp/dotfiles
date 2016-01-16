@@ -1,12 +1,11 @@
 /usr/bin/chromium %U
-  ^http://
-  ^https://
+  ^https?://
 
 /usr/bin/eog %F
   \.png$
   \.jpg$
 
-/usr/bin/qbittorrent %U
+/usr/bin/qbittorrent %U %F
   ^magnet:
   \.torrent$
 
