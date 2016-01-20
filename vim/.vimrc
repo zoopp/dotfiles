@@ -15,6 +15,8 @@ set nocompatible " Drop Vi comptability
             Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
             Plug 'FelikZ/ctrlp-py-matcher'          " Python matcher for CtrlP (better performance)
             Plug 'vim-scripts/restore_view.vim'     " Restores the cursor position
+
+            Plug 'godlygeek/tabular'                " Tabular alignment
         " }
 
         " General Programming {
@@ -30,7 +32,7 @@ set nocompatible " Drop Vi comptability
             Plug 'SirVer/ultisnips'                 " Snippets engine
             Plug 'honza/vim-snippets'               " Actual snippets
 
-            Plug 'godlygeek/tabular'                " Tabular alignment
+            Plug 'plasticboy/vim-markdown'          " Markdown
         " }
 
         " C++ {
