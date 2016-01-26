@@ -197,7 +197,7 @@ set nocompatible " Drop Vi comptability
         " CtrlP {
             " Don't limit the index size, custom searcher, custom matcher
             let g:ctrlp_max_files=0
-            let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+            let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
                   \ --ignore .git
                   \ --ignore .svn
                   \ --ignore .hg
@@ -205,7 +205,8 @@ set nocompatible " Drop Vi comptability
                   \ --ignore "**/*.pyc"
                   \ --ignore "**/*.o"
                   \ -g ""'
-            let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+            " This one became slower!!?!
+            " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
         " }
 
         " AutoCloseTag {

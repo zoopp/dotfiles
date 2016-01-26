@@ -21,6 +21,7 @@ export TERMINAL=termite
 # Less - sourcecode highlight
 if [ -r "/usr/bin/src-hilite-lesspipe.sh" ]; then
     export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+    alias less='less -R'
 fi
 
 PS1="\[${COLOR_BLUE}\]\n┌─┤\[${COLOR_BOLD}\]\t\[${COLOR_RESET}${COLOR_BLUE}\]│"\
