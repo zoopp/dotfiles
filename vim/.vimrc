@@ -1,34 +1,41 @@
-set nocompatible " Drop Vi comptability
+set nocompatible
 
 " Plugin management {
     call plug#begin()
     " Plugins {
         " General {
-            Plug 'bling/vim-airline'                " Nicer status bar
+            Plug 'vim-scripts/restore_view.vim'     " Restores cursor position and folds of reopened files
+
             Plug 'scrooloose/nerdtree'              " A file browser tree
             Plug 'jistr/vim-nerdtree-tabs'          " Better NERDTree integration
-            Plug 'mhinz/vim-signify'                " VCS changes indicator
+
+            Plug 'sjl/badwolf'                      " Color scheme
+            Plug 'vim-airline/vim-airline'          " Status and tab bar
+            Plug 'vim-airline/vim-airline-themes'   " Status and tab bar themes
+            Plug 'mhinz/vim-signify'                " Difference indicator that integrates with VCS
             Plug 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
 
-            Plug 'flazz/vim-colorschemes'           " Some more colorschemes
-
-            Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
-            Plug 'FelikZ/ctrlp-py-matcher'          " Python matcher for CtrlP (better performance)
-            Plug 'vim-scripts/restore_view.vim'     " Restores the cursor position
+            " Fuzzy file finder and custom matcher specialized for paths
+            Plug 'ctrlpvim/ctrlp.vim'
+            Plug 'nixprime/cpsm', { 'do': './install.sh' }
 
             Plug 'godlygeek/tabular'                " Tabular alignment
+            Plug 'jiangmiao/auto-pairs'             " Autoclose matching pairs of characters
+
+            " Async execution library
+            Plug 'Shougo/vimproc.vim', { 'do': 'make' }
         " }
 
         " General Programming {
             Plug 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
             Plug 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
+            Plug 'ludovicchabant/vim-gutentags'     " Automatic tags management
 
             " Completion Engine
-            Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer'}
-            Plug 'scrooloose/syntastic'             " Syntax checking plugin
-            Plug 'majutsushi/tagbar'                " Sourcecode tag browser
+            Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer' }
+            Plug 'majutsushi/tagbar'                " Source code tag browser
+            Plug 'benekastah/neomake'               " Syntax checking plugin
 
-            Plug 'Raimondi/delimitMate'             " Autoclose matching pairs
             Plug 'SirVer/ultisnips'                 " Snippets engine
             Plug 'honza/vim-snippets'               " Actual snippets
 
@@ -44,16 +51,14 @@ set nocompatible " Drop Vi comptability
             Plug 'klen/python-mode'                 " Better Python support
         " }
 
-        " Javascript {
-            Plug 'pangloss/vim-javascript'          " Better Javascript syntax and indent
+        " JSON {
             Plug 'elzr/vim-json'                    " Better JSON support
         " }
 
-        " HTML {
-            Plug 'amirh/HTML-AutoCloseTag'          " Autoclose HTML tags
-            Plug 'hail2u/vim-css3-syntax'           " Add css3 syntax highlighting
-            Plug 'gorodinskiy/vim-coloresque'       " CSS and HTML color preview
-        " }
+        " If there's a local plugins file then source it
+        if filereadable(glob("~/.vimrc.plugins.local"))
+            source ~/.vimrc.plugins.local
+        endif
     " }
     call plug#end()
 " }
@@ -87,8 +92,6 @@ set nocompatible " Drop Vi comptability
         colorscheme badwolf
 
         set number                                    " Always show line numbers
-        highlight clear SignColumn                    " SignColumn should match background
-        highlight clear LineNr                        " Same goes for line number column
 
         set foldenable                                " Enable folding
         set cursorline                                " Highlight current line
@@ -129,25 +132,7 @@ set nocompatible " Drop Vi comptability
         " Map leader key to space
         let mapleader="\<Space>"
 
-        " Disable arrow keys in normal mode
-        map <up> <nop>
-        map <down> <nop>
-        map <left> <nop>
-        map <right> <nop>
-
-        " Disable arrow keys in insert mode
-        imap <up> <nop>
-        imap <down> <nop>
-        imap <left> <nop>
-        imap <right> <nop>
-
-        " Disable arrow keys in visual mode
-        vmap <up> <nop>
-        vmap <down> <nop>
-        vmap <left> <nop>
-        vmap <right> <nop>
-
-        " Easier moving between splits; conflics with digraph mapping of <C-K>
+        " Easier moving between splits; conflics with digraph mapping
         map <C-J> <C-W>j
         map <C-K> <C-W>k
         map <C-L> <C-W>l
@@ -195,23 +180,18 @@ set nocompatible " Drop Vi comptability
         " }
 
         " CtrlP {
-            " Don't limit the index size, custom searcher, custom matcher
-            let g:ctrlp_max_files=0
-            let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
-                  \ --ignore .git
-                  \ --ignore .svn
-                  \ --ignore .hg
-                  \ --ignore .DS_Store
-                  \ --ignore "**/*.pyc"
-                  \ --ignore "**/*.o"
-                  \ -g ""'
-            " This one became slower!!?!
-            " let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-        " }
-
-        " AutoCloseTag {
-            " Make AutoCloseTag work on xml and xhtml files
-            au FileType xhtml,xml ru ftplugin/html_autoclosetag.vim  
+            " Only use the silver searcher to scan directories if available
+            if executable('ag')
+                let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
+                      \ --ignore .git
+                      \ --ignore .svn
+                      \ --ignore .hg
+                      \ --ignore .DS_Store
+                      \ --ignore "**/*.pyc"
+                      \ --ignore "**/*.o"
+                      \ -g ""'
+            endif
+            let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
         " }
 
         " NERDTree {
@@ -220,10 +200,6 @@ set nocompatible " Drop Vi comptability
             let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
             let g:NERDTreeBookmarksFile='~/.vim/NERDTreeBookmarks'
             let g:NERDTreeMouseMode=2
-        " }
-
-        " Numbers {
-            let g:enable_numbers=1
         " }
 
         " Tagbar {
@@ -253,9 +229,8 @@ set nocompatible " Drop Vi comptability
             let g:UltiSnipsJumpForwardTrigger = '<C-j>'
             let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-            let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-
             " GoTo Mappings
+            " TODO: idea, try to jump using YCM if it fails try with tags
             map <leader>ji :YcmCompleter GoToDefinition<CR>
             map <leader>jd :YcmCompleter GoToDeclaration<CR>
         " }
@@ -277,34 +252,35 @@ set nocompatible " Drop Vi comptability
 
         " Python-mode {
             " Fixes interference with YouCompleteMe
-            let g:pymode=1
             let g:pymode_virtualenv=1                           " Autodetect virtualenv
-            let g:pymode_lint_write=0
             let g:pymode_rope = 0                               " Disable rope for now
             let g:pymode_rope_complete_on_dot = 0               " Fixes interaction with YCM
         " }
 
         " Tabularize {
-            " nmap <Leader>a& :Tabularize /&<CR>
-            " vmap <Leader>a& :Tabularize /&<CR>
-            " nmap <Leader>a= :Tabularize /=<CR>
-            " vmap <Leader>a= :Tabularize /=<CR>
-            " nmap <Leader>a: :Tabularize /:<CR>
-            " vmap <Leader>a: :Tabularize /:<CR>
-            " nmap <Leader>a:: :Tabularize /:\zs<CR>
-            " vmap <Leader>a:: :Tabularize /:\zs<CR>
-            " nmap <Leader>a, :Tabularize /,<CR>
-            " vmap <Leader>a, :Tabularize /,<CR>
-            " nmap <Leader>a,, :Tabularize /,\zs<CR>
-            " vmap <Leader>a,, :Tabularize /,\zs<CR>
-            " nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-            " vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+            " Some useful shortcuts
+            nmap <Leader>a& :Tabularize /&<CR>
+            vmap <Leader>a& :Tabularize /&<CR>
+            nmap <Leader>a= :Tabularize /=<CR>
+            vmap <Leader>a= :Tabularize /=<CR>
+            nmap <Leader>a: :Tabularize /:<CR>
+            vmap <Leader>a: :Tabularize /:<CR>
+            nmap <Leader>a:: :Tabularize /:\zs<CR>
+            vmap <Leader>a:: :Tabularize /:\zs<CR>
+            nmap <Leader>a, :Tabularize /,<CR>
+            vmap <Leader>a, :Tabularize /,<CR>
+            nmap <Leader>a,, :Tabularize /,\zs<CR>
+            vmap <Leader>a,, :Tabularize /,\zs<CR>
+            nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+            vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
         " }
     " }
 " }
 
 
-" temporary
-let g:autoclose_vim_commentmode = 1
+" Load any local configurations if available
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.plugins.local
+endif
 
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker :
