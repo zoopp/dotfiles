@@ -21,12 +21,16 @@ export TERMINAL=termite
 # Less - sourcecode highlight
 if [ -r "/usr/bin/src-hilite-lesspipe.sh" ]; then
     export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
-    alias less='less -R'
+    export LESS='-R'
+fi
+
+# Load python virtualenv wrapper if available
+if [ -x "/usr/bin/virtualenvwrapper_lazy.sh" ]; then
+    source /usr/bin/virtualenvwrapper_lazy.sh
 fi
 
 PS1="\[${COLOR_BLUE}\]\n┌─┤\[${COLOR_BOLD}\]\t\[${COLOR_RESET}${COLOR_BLUE}\]│"\
 "\u@\h:\[${COLOR_CYAN}\]\w\n\[${COLOR_BLUE}\]└──────────╼\[${COLOR_RESET}\] "
-
 
 # If available, load the local .bashrc after running this script
 [ -r ".bashrc.local.after" ] && source .bashrc.local.after
