@@ -88,7 +88,6 @@ set nocompatible
 
     " Appearance {
         syntax on                                     " Turn on syntax highlighting
-        set background=dark                           " Assume a dark background
         colorscheme badwolf
 
         set number                                    " Always show line numbers
@@ -241,13 +240,6 @@ set nocompatible
 
         " vim-cpp-enhanced-highlight {
             let g:cpp_class_scope_highlight = 1
-        " }
-
-        " Syntastic {
-            " C++ specific settings
-            let g:syntastic_cpp_compiler_options=' -std=c++14'
-            let g:syntastic_cpp_check_header=1
-            let g:syntastic_python_flake8_args='--ignore=E501,E221'
         " }
 
         " Python-mode {
