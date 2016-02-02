@@ -20,7 +20,7 @@ set nocompatible
             Plug 'nixprime/cpsm', { 'do': './install.sh' }
 
             Plug 'godlygeek/tabular'                " Tabular alignment
-            Plug 'jiangmiao/auto-pairs'             " Autoclose matching pairs of characters
+            Plug 'Raimondi/delimitMate'             " Autoclose matching pairs of characters
 
             " Async execution library
             Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -193,6 +193,11 @@ set nocompatible
             let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
         " }
 
+        " Delimitmate
+        " {
+            let delimitMate_expand_cr=1
+        " }
+
         " NERDTree {
             map <C-e> :NERDTreeTabsToggle<CR>
             let g:NERDTreeCaseSensitiveSort=1
@@ -272,7 +277,7 @@ set nocompatible
 
 " Load any local configurations if available
 if filereadable(glob("~/.vimrc.local"))
-    source ~/.vimrc.plugins.local
+    source ~/.vimrc.local
 endif
 
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker :
