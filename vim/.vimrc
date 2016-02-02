@@ -189,6 +189,8 @@ set nocompatible
                       \ --ignore "**/*.pyc"
                       \ --ignore "**/*.o"
                       \ -g ""'
+                " Consider replacing with "find -H %s -path '*/.git/*' -prune -o -xtype f -print"
+                " It appears to be faster than ag
             endif
             let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
         " }
