@@ -9,7 +9,7 @@
   ^magnet:
   \.torrent$
 
-/usr/bin/vlc --one-instance %F
+/usr/bin/vlc --one-instance %U
   \.mkv$
   \.mp4$
 
