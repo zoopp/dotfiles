@@ -201,7 +201,7 @@ set nocompatible
         " }
 
         " NERDTree {
-            map <C-e> :NERDTreeTabsToggle<CR>
+            nmap <C-e> :NERDTreeTabsToggle<CR>
             let g:NERDTreeCaseSensitiveSort=1
             let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
             let g:NERDTreeBookmarksFile='~/.vim/NERDTreeBookmarks'
@@ -209,7 +209,7 @@ set nocompatible
         " }
 
         " Tagbar {
-            map <leader>tb :TagbarToggle<CR>
+            nmap <leader>tb :TagbarToggle<CR>
             let g:tagbar_type_markdown = {
                 \ 'ctagstype': 'markdown',
                 \ 'ctagsbin' : 'markdown2ctags',
@@ -227,18 +227,18 @@ set nocompatible
         " }
 
         " YouCompleteMe {
-            " Enable completion from tags
-            let g:ycm_collect_identifiers_from_tags_files=1
+            " Note: don't forget to add `--fields=+l` to ctags
+            let g:ycm_collect_identifiers_from_tags_files = 1
 
             " Remap Ultisnips for compatibility with YCM
             let g:UltiSnipsExpandTrigger = '<C-j>'
             let g:UltiSnipsJumpForwardTrigger = '<C-j>'
             let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-            " GoTo Mappings
-            " TODO: idea, try to jump using YCM if it fails try with tags
-            map <leader>ji :YcmCompleter GoToDefinition<CR>
-            map <leader>jd :YcmCompleter GoToDeclaration<CR>
+            nmap <leader>j :YcmCompleter GoTo<CR>
+            nmap <leader>t :YcmCompleter GetType<CR>
+            nmap <leader>f :YcmCompleter FixIt<CR>
+            nmap <leader>d :YcmCompleter GetDoc<CR>
         " }
 
         " clang-format {
