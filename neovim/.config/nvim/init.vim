@@ -25,7 +25,7 @@ endif
             Plug 'scrooloose/nerdtree'              " A file browser tree
             Plug 'jistr/vim-nerdtree-tabs'          " Better NERDTree integration
 
-            Plug 'sjl/badwolf'                      " Color scheme
+            Plug 'morhetz/gruvbox'                  " Color scheme
             Plug 'vim-airline/vim-airline'          " Status and tab bar
             Plug 'vim-airline/vim-airline-themes'   " Status and tab bar themes
             Plug 'mhinz/vim-signify'                " Difference indicator that integrates with VCS
@@ -104,7 +104,9 @@ endif
 
     " Appearance {
         syntax on                                     " Turn on syntax highlighting
-        colorscheme badwolf
+        let g:gruvbox_contrast_dark="hard"
+        set background=dark
+        colorscheme gruvbox
 
         set number                                    " Always show line numbers
 
