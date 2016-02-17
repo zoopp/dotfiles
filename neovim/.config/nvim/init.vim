@@ -31,9 +31,9 @@ endif
             Plug 'mhinz/vim-signify'                " Difference indicator that integrates with VCS
             Plug 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
 
-            " Fuzzy file finder and custom matcher specialized for paths
-            Plug 'ctrlpvim/ctrlp.vim'
-            Plug 'nixprime/cpsm', { 'do': './install.sh' }
+            " Fuzzy finder + vim integration
+            Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+            Plug 'junegunn/fzf.vim'
 
             Plug 'godlygeek/tabular'                " Tabular alignment
             Plug 'Raimondi/delimitMate'             " Autoclose matching pairs of characters
@@ -196,26 +196,28 @@ endif
             nmap <leader>9 <Plug>AirlineSelectTab9
         " }
 
-        " CtrlP {
-            " Only use the silver searcher to scan directories if available
-            if executable('ag')
-                let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
-                      \ --ignore .git
-                      \ --ignore .svn
-                      \ --ignore .hg
-                      \ --ignore .DS_Store
-                      \ --ignore "**/*.pyc"
-                      \ --ignore "**/*.o"
-                      \ -g ""'
-                " Consider replacing with "find -H %s -path '*/.git/*' -prune -o -xtype f -print"
-                " It appears to be faster than ag
-            endif
-            let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+        " clang-format {
+            let g:clang_format#detect_style_file = 1
         " }
 
         " Delimitmate
         " {
             let delimitMate_expand_cr=1
+        " }
+
+        " fzf {
+            function! FindProjectRoot()
+                for vcs in ['.project_root', '.git']
+                    let dir = finddir(vcs.'/..', ';')
+                    if !empty(dir)
+                        return dir
+                    endif
+                endfor
+                return getcwd()
+            endfunction
+
+            map <C-p> :FZF `:execute FindProjectRoot()`<CR>
+            map <leader>l :BLines<CR>
         " }
 
         " NERDTree {
@@ -224,6 +226,13 @@ endif
             let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
             let g:NERDTreeBookmarksFile='~/.vim/NERDTreeBookmarks'
             let g:NERDTreeMouseMode=2
+        " }
+
+        " Python-mode {
+            " Fixes interference with YouCompleteMe
+            let g:pymode_virtualenv=1                           " Autodetect virtualenv
+            let g:pymode_rope = 0                               " Disable rope for now
+            let g:pymode_rope_complete_on_dot = 0               " Fixes interaction with YCM
         " }
 
         " Tagbar {
@@ -244,36 +253,6 @@ endif
             \ }
         " }
 
-        " YouCompleteMe {
-            " Note: don't forget to add `--fields=+l` to ctags
-            let g:ycm_collect_identifiers_from_tags_files = 1
-
-            " Remap Ultisnips for compatibility with YCM
-            let g:UltiSnipsExpandTrigger = '<C-j>'
-            let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-            let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-
-            nmap <leader>j :YcmCompleter GoTo<CR>
-            nmap <leader>t :YcmCompleter GetType<CR>
-            nmap <leader>f :YcmCompleter FixIt<CR>
-            nmap <leader>d :YcmCompleter GetDoc<CR>
-        " }
-
-        " clang-format {
-            let g:clang_format#detect_style_file = 1
-        " }
-
-        " vim-cpp-enhanced-highlight {
-            let g:cpp_class_scope_highlight = 1
-        " }
-
-        " Python-mode {
-            " Fixes interference with YouCompleteMe
-            let g:pymode_virtualenv=1                           " Autodetect virtualenv
-            let g:pymode_rope = 0                               " Disable rope for now
-            let g:pymode_rope_complete_on_dot = 0               " Fixes interaction with YCM
-        " }
-
         " Tabularize {
             " Some useful shortcuts
             nmap <Leader>a& :Tabularize /&<CR>
@@ -290,6 +269,27 @@ endif
             vmap <Leader>a,, :Tabularize /,\zs<CR>
             nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
             vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+        " }
+
+        " vim-cpp-enhanced-highlight {
+            let g:cpp_class_scope_highlight = 1
+            let g:cpp_experimental_template_highlight = 1
+        " }
+
+        " YouCompleteMe {
+            " Note: don't forget to add --fields=+l --extra=+q to ctags
+            " TODO: ^ make sure gutentags uses that
+            let g:ycm_collect_identifiers_from_tags_files = 1
+
+            " Remap Ultisnips for compatibility with YCM
+            let g:UltiSnipsExpandTrigger = '<C-j>'
+            let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+            let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+            nmap <leader>j :YcmCompleter GoTo<CR>
+            nmap <leader>t :YcmCompleter GetType<CR>
+            nmap <leader>f :YcmCompleter FixIt<CR>
+            nmap <leader>d :YcmCompleter GetDoc<CR>
         " }
     " }
 " }
