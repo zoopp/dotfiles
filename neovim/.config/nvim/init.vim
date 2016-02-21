@@ -27,7 +27,6 @@ endif
 
             Plug 'morhetz/gruvbox'                  " Color scheme
             Plug 'vim-airline/vim-airline'          " Status and tab bar
-            Plug 'vim-airline/vim-airline-themes'   " Status and tab bar themes
             Plug 'mhinz/vim-signify'                " Difference indicator that integrates with VCS
             Plug 'myusuf3/numbers.vim'              " Toggle between relative and fixed line numbers
 
@@ -45,17 +44,15 @@ endif
         " General Programming {
             Plug 'PotatoesMaster/i3-vim-syntax'     " i3 config syntax highlight
             Plug 'beyondmarc/glsl.vim'              " GLSL syntax highlighting
+            Plug 'plasticboy/vim-markdown'          " Markdown
             Plug 'ludovicchabant/vim-gutentags'     " Automatic tags management
 
             " Completion Engine
             Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer' }
             Plug 'majutsushi/tagbar'                " Source code tag browser
-            Plug 'benekastah/neomake'               " Syntax checking plugin
+            Plug 'benekastah/neomake'               " Syntax checking & static analysis
 
             Plug 'SirVer/ultisnips'                 " Snippets engine
-            Plug 'honza/vim-snippets'               " Actual snippets
-
-            Plug 'plasticboy/vim-markdown'          " Markdown
         " }
 
         " C++ {
@@ -218,6 +215,7 @@ endif
 
             map <C-p> :FZF `:execute FindProjectRoot()`<CR>
             map <leader>l :BLines<CR>
+            map <leader>b :Buffers<CR>
         " }
 
         " NERDTree {
@@ -279,7 +277,7 @@ endif
         " YouCompleteMe {
             " Note: don't forget to add --fields=+l --extra=+q to ctags
             " TODO: ^ make sure gutentags uses that
-            let g:ycm_collect_identifiers_from_tags_files = 1
+            "let g:ycm_collect_identifiers_from_tags_files = 1
 
             " Remap Ultisnips for compatibility with YCM
             let g:UltiSnipsExpandTrigger = '<C-j>'
