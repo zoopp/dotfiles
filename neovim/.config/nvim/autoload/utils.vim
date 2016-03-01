@@ -23,7 +23,7 @@ function! utils#FindProjectRoot()
     endfor
 
     for marker in s:root_dir_markers
-        let path = finddir(marker . '../', ';')
+        let path = finddir(marker . '/..', ';')
         if !empty(path)
             return path
         endif
