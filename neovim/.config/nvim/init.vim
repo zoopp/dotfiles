@@ -58,9 +58,6 @@
 
 " Settings {
   " General settings {
-    filetype plugin indent on
-    syntax on
-
     set showcmd                                   " Show partial command in the last line of the screen
     set viewoptions=cursor,folds,slash,unix       " What info to store when saving view info
     set clipboard=unnamedplus                     " Use the + register for copy-paste
