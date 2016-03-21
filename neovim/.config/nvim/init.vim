@@ -1,3 +1,10 @@
+"
+" Some constants pointing to local configuration files
+"
+let s:local_plugins_path = '~/.config/nvim/local.plugins.vim'
+let s:local_init_path = '~/.config/nvim/local.init.vim'
+
+
 " Plugins {
   call plug#begin()
     " General {
@@ -50,8 +57,8 @@
     " }
 
     " If there's a local plugins file then source it
-    if filereadable("local_plugins.vim")
-        source local_plugins.vim
+    if filereadable(expand(s:local_plugins_path))
+        execute 'source ' . s:local_plugins_path
     endif
   call plug#end()
 " }
@@ -239,8 +246,8 @@
 
 
 " Load any local configurations if available
-if filereadable("local.init.vim")
-    source local.init.vim
+if filereadable(expand(s:local_init_path))
+    execute 'source ' . s:local_init_path
 endif
 
 " vim: set sw=4 ts=4 sts=4 et tw=100 foldmarker={,} foldlevel=0 foldmethod=marker :
