@@ -12,8 +12,9 @@ let s:local_init_path = '~/.config/nvim/local.init.vim'
       Plug 'vim-airline/vim-airline'              " Status and tab bar
       Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
 
-      Plug 'scrooloose/nerdtree'                  " A file browser tree
-      Plug 'Xuyuanp/nerdtree-git-plugin'          " Git plugin for nerdtree
+      " A file browser tree & a git plugin to go along
+      Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+      Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
       " Fuzzy finder + vim integration
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
