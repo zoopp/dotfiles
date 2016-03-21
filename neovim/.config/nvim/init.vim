@@ -139,6 +139,11 @@ let s:local_init_path = '~/.config/nvim/local.init.vim'
     vnoremap < <gv
     vnoremap > >gv
 
+    " Make arrow keys do something useful
+    nnoremap <Left> :vertical resize +2<CR>
+    nnoremap <Right> :vertical resize -2<CR>
+    nnoremap <Up> :resize -2<CR>
+    nnoremap <Down> :resize +2<CR>
   " }
 
   " General commands {
