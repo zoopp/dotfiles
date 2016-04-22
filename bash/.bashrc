@@ -34,3 +34,6 @@ PS1="\[${COLOR_BLUE}\]\n┌─┤\[${COLOR_BOLD}\]\t\[${COLOR_RESET}${COLOR_BLUE
 
 # If available, load the local .bashrc after running this script
 [ -r ".bashrc.local.after" ] && source .bashrc.local.after
+
+# If available, load fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
