@@ -1,10 +1,13 @@
-#
-# ~/.bash_logout
-#
-
-# If available, load the local .bash_logout before running this script
-[ -r ".bash_logout.local.before" ] && source .bash_logout.local.before
+################################################################################
+##                               ~/.bash_logout                               ##
+################################################################################
 
 
-# If available, load the local .bash_logout after running this script
-[ -r ".bash_logout.local.after" ] && source .bash_logout.local.after
+BASH_LOGOUT_LOCAL_BEFORE="$HOME/.bash_logout.local.before"
+BASH_LOGOUT_LOCAL_AFTER="$HOME/.bash_logout.local.after"
+
+
+[[ -r "$BASH_LOGOUT_LOCAL_BEFORE" ]] && source "$BASH_LOGOUT_LOCAL_BEFORE"
+
+
+[[ -r "$BASH_LOGOUT_LOCAL_AFTER" ]] && source "$BASH_LOGOUT_LOCAL_AFTER"

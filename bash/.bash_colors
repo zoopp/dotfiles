@@ -1,7 +1,9 @@
-#!/usr/bin/env bash
+################################################################################
+##                                .bash_colors                                ##
+################################################################################
 
-# Basic Usage:
-# $ . colors.sh
+# Usage:
+# $ source .bash_colors
 # $ echo -e "${COLOR_BLUE}Here is some blue text.${COLOR_RESET}"
 #
 # Display available colors:

@@ -1,18 +1,15 @@
-#
-# ~/.bash_profile
-#
-
-# If available, load the local .bash_profile before running this script
-[ -r ".bash_profile.local.before" ] && source .bash_profile.local.before
+################################################################################
+##                              ~/.bash_profile                               ##
+################################################################################
 
 
-# Export local bin path and load user bashrc
-export PATH=~/.local/bin:$PATH
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+BASH_PROFILE_LOCAL_BEFORE="$HOME/.bash_profile.local.before"
+BASH_PROFILE_LOCAL_AFTER="$HOME/.bash_profile.local.after"
+BASHRC="$HOME/.bashrc"
 
+[[ -r "$BASH_PROFILE_LOCAL_BEFORE" ]] && source "$BASH_PROFILE_LOCAL_BEFORE"
 
-# If available, load the local .bash_profile after running this script
-[ -r ".bash_profile.local.after" ] && source .bash_profile.local.after
+export PATH="$HOME/.local/bin:$PATH"
+source "$BASHRC"
 
-# And finally, If we login from tty1 start the graphical environment
-[ $(tty) = "/dev/tty1" ] && startx
+[[ -r "$BASH_PROFILE_LOCAL_AFTER" ]] && source "$BASH_PROFILE_LOCAL_AFTER"
