@@ -40,8 +40,6 @@ let s:local_init_path = '~/.config/nvim/local.init.vim'
 
       Plug 'Raimondi/delimitMate'                 " Auto close matching pairs of characters
       Plug 'mhinz/vim-signify'                    " Gutter diff indicator that integrates with VCSs
-
-      Plug 'plasticboy/vim-markdown'              " Markdown integration
     " }
 
     " C++ {
@@ -49,8 +47,17 @@ let s:local_init_path = '~/.config/nvim/local.init.vim'
       Plug 'rhysd/vim-clang-format'               " Clang format
     " }
 
+    " Markdown {
+      Plug 'plasticboy/vim-markdown'              " Markdown integration
+    " }
+
     " Python {
       Plug 'klen/python-mode'                     " Better Python support
+    " }
+
+    " ReStructuredText {
+      Plug 'Rykka/riv.vim'                        " ReStructuredText integration
+      Plug 'Rykka/InstantRst'                     " Preview rst docs on-the-fly in the browser
     " }
 
     " JSON {
@@ -216,9 +223,25 @@ let s:local_init_path = '~/.config/nvim/local.init.vim'
 
     " Tagbar {
       nmap <leader>tb :TagbarToggle<CR>
+
       let g:tagbar_type_markdown = {
           \ 'ctagstype': 'markdown',
           \ 'ctagsbin' : 'markdown2ctags',
+          \ 'ctagsargs' : '-f - --sort=yes',
+          \ 'kinds' : [
+              \ 's:sections',
+              \ 'i:images'
+          \ ],
+          \ 'sro' : '|',
+          \ 'kind2scope' : {
+              \ 's' : 'section',
+          \ },
+          \ 'sort': 0,
+      \ }
+
+      let g:tagbar_type_rst = {
+          \ 'ctagstype': 'rst',
+          \ 'ctagsbin' : '/path/to/rst2ctags.py',
           \ 'ctagsargs' : '-f - --sort=yes',
           \ 'kinds' : [
               \ 's:sections',
@@ -256,4 +279,4 @@ if filereadable(expand(s:local_init_path))
     execute 'source ' . s:local_init_path
 endif
 
-" vim: set sw=4 ts=4 sts=4 et tw=100 foldmarker={,} foldlevel=0 foldmethod=marker :
+" vim: set sw=2 ts=2 sts=2 et tw=100 foldmarker={,} foldlevel=0 foldmethod=marker :
