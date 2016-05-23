@@ -23,14 +23,9 @@ function require_commands {
 
 
 # ----------------------------------------------------------------------------------------------------
-require_commands ls cut stow git curl make
+require_commands ls cut stow git curl make cmake g++ gcc
 
 
 # ----------------------------------------------------------------------------------------------------
 # Symlink dotfiles
 stow -v --no-folding -t "$HOME" `ls -1 -d */ | cut -f1 -d'/'` 
-
-
-# ----------------------------------------------------------------------------------------------------
-# Do parallel setup
-make -j5 -f setup.makefile
