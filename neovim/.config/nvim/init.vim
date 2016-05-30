@@ -5,6 +5,13 @@ let s:local_plugins_path = '~/.config/nvim/local.plugins.vim'
 let s:local_init_path = '~/.config/nvim/local.init.vim'
 
 
+"
+" Don't rely on the neovim python client to be installed in a virtualenv
+"
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
+
 " Plugins {
   call plug#begin()
     " General {
@@ -33,7 +40,7 @@ let s:local_init_path = '~/.config/nvim/local.init.vim'
       " }
 
       " Code {
-        Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --clang-completer' }
+        Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
         Plug 'majutsushi/tagbar'                  " Source code tag browser
         Plug 'SirVer/ultisnips'                   " Snippets engine
       " }
@@ -264,6 +271,8 @@ let s:local_init_path = '~/.config/nvim/local.init.vim'
       let g:UltiSnipsExpandTrigger = '<C-j>'
       let g:UltiSnipsJumpForwardTrigger = '<C-j>'
       let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+      let g:ycm_python_binary_path = g:python3_host_prog
 
       nmap <leader>j :YcmCompleter GoTo<CR>
       nmap <leader>t :YcmCompleter GetType<CR>
