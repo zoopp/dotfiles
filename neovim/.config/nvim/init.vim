@@ -37,6 +37,7 @@ let g:python3_host_prog = '/usr/bin/python3'
       " Syntax {
         Plug 'PotatoesMaster/i3-vim-syntax'       " i3 config syntax highlight
         Plug 'beyondmarc/glsl.vim'                " GLSL syntax highlighting
+        Plug 'sophacles/vim-bundle-mako'          " Mako syntax highlighting
       " }
 
       " Code {
