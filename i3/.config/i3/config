@@ -156,7 +156,7 @@ bar {
 # hide titlebars, 1pixel borders
 new_window pixel 0
 new_float pixel 0
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 for_window [class="Player"] floating enable
 
 popup_during_fullscreen smart
