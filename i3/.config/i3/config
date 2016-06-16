@@ -6,8 +6,9 @@ font xft:Meslo LG S DZ for Powerline 10.8
 # ----------------------------------------------------------------------------------------------------
 # Programs
 # ----------------------------------------------------------------------------------------------------
-set $locker i3lock -b -d -I 5 -c 000000
-set $dmenu j4-dmenu-desktop --display-binary --dmenu='dmenu -i -fn "Meslo LG S DZ for Powerline-10.8" -p "$" -l 5 -hist ~/.dmenu-history'
+set $locker i3lock -b -d -I 5 -c 282828
+set $launcher rofi -show combi
+set $window_finder rofi -show window
 
 set $volume_up amixer -D pulse set Master 5%+ unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_down amixer -D pulse set Master 5%- unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
@@ -22,7 +23,9 @@ set $mod Mod1
 
 # start applications
 bindsym $super+Return exec --no-startup-id i3-sensible-terminal
-bindsym $super+o      exec --no-startup-id $dmenu
+bindsym $super+o      exec --no-startup-id $launcher
+bindsym $super+w      exec --no-startup-id $window_finder
+
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
