@@ -1,36 +1,92 @@
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+####################################################################################################
+##                                      ~/.config/i3/config                                       ##
+####################################################################################################
+
+
+####################################################################################################
+##                                           Appearance                                           ##
+####################################################################################################
 font xft:Meslo LG S DZ for Powerline 10.8
 
+# colorclass             border   background   text     indicator
+client.focused           #689d6a  #689d6a      #282828  #282828
+client.focused_inactive  #1d2021  #1d2021      #928374  #282828
+client.unfocused         #32302f  #32302f      #928374  #282828
+client.urgent            #cc241d  #cc241d      #ebdbb2  #282828
 
-# ----------------------------------------------------------------------------------------------------
-# Programs
-# ----------------------------------------------------------------------------------------------------
+bar {
+    status_command python ~/.config/i3/scripts/i3status.py
+    position top
+    colors {
+        background           #282828
+        statusline           #ebdbb2
+        separator            #928374
+
+        # colorclass         border    background  text
+        focused_workspace    #689d6a   #689d6a     #282828
+        active_workspace     #1d2021   #1d2021     #928374
+        inactive_workspace   #32302f   #32302f     #928374
+        urgent_workspace     #cc241d   #cc241d     #ebdbb2
+    }
+}
+
+# hide title bars, 2pixel borders
+new_window pixel 0
+new_float pixel 0
+for_window [class="^.*"] border pixel 2
+for_window [class="Player"] floating enable
+
+popup_during_fullscreen smart
+
+
+####################################################################################################
+##                                           Utilities                                            ##
+####################################################################################################
 set $locker i3lock -b -d -I 5 -c 282828
 set $launcher rofi -show combi
 set $window_finder rofi -show window
+
+set $brightness_up xbacklight +10 -time 200
+set $brightness_down xbacklight -10 -time 200
 
 set $volume_up amixer -D pulse set Master 5%+ unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_down amixer -D pulse set Master 5%- unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_toggle_mute amixer -D pulse set Master toggle
 
 
-# ----------------------------------------------------------------------------------------------------
-# Keybinds
-# ----------------------------------------------------------------------------------------------------
+####################################################################################################
+##                                            Keybinds                                            ##
+####################################################################################################
 set $super Mod4
 set $mod Mod1
 
-# start applications
+
+################################################################################
+##                                Applications                                ##
+################################################################################
+# Common applications
 bindsym $super+Return exec --no-startup-id i3-sensible-terminal
 bindsym $super+o      exec --no-startup-id $launcher
 bindsym $super+w      exec --no-startup-id $window_finder
 
+# Screen lock
+bindsym $super+$mod+l exec --no-startup-id $locker
+
+# brightness control
+bindsym XF86MonBrightnessUp   exec --no-startup-id $brightness_up
+bindsym XF86MonBrightnessDown exec --no-startup-id $brightness_down
+
+# Audio control
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id $volume_down
+bindsym XF86AudioMute        exec --no-startup-id $volume_toggle_mute
+
+
+################################################################################
+##                   Focus, Window and Layout Manipulation                    ##
+################################################################################
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
-
-# kill focused window
-bindsym $super+Shift+c kill
 
 # change focus
 bindsym $super+h focus left
@@ -38,14 +94,23 @@ bindsym $super+j focus down
 bindsym $super+k focus up
 bindsym $super+l focus right
 
-# move focused window
+# move window
 bindsym $super+Shift+h move left
 bindsym $super+Shift+j move down
 bindsym $super+Shift+k move up
 bindsym $super+Shift+l move right
 
-# enter fullscreen mode for the focused container
+# kill focused window
+bindsym $super+Shift+c kill
+
+# make focused window fullscreen
 bindsym $super+f fullscreen toggle
+
+# toggle focused window between tiling / floating
+bindsym $super+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $super+space focus mode_toggle
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -58,18 +123,16 @@ bindsym $super+s layout stacking
 bindsym $super+t layout tabbed
 bindsym $super+e layout toggle split
 
-# toggle tiling / floating
-bindsym $super+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $super+space focus mode_toggle
-
 # focus the parent container
 bindsym $super+p focus parent
 
 # focus the child container
 bindsym $super+c focus child
 
+
+################################################################################
+##                                 Workspace                                  ##
+################################################################################
 # switch to workspace
 bindsym $super+1 workspace 1
 bindsym $super+2 workspace 2
@@ -94,20 +157,24 @@ bindsym $super+Shift+8 move container to workspace 8
 bindsym $super+Shift+9 move container to workspace 9
 bindsym $super+Shift+0 move container to workspace 10
 
+
+################################################################################
+##                                 Scrachpad                                  ##
+################################################################################
 # scratchpad bindings
 bindsym $super+Shift+Tab move scratchpad
 bindsym $super+Tab scratchpad show
 
-# reload the configuration file
-#bindsym $super+Shift+c reload
 
+################################################################################
+##                                Other binds                                 ##
+################################################################################
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $super+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
 # These bindings trigger as soon as you enter the resize mode
 mode "resize" {
         bindsym h resize shrink width  10 px or 10 ppt
@@ -122,55 +189,10 @@ mode "resize" {
 
 bindsym $super+r mode "resize"
 
-# audio control
-bindsym XF86AudioRaiseVolume exec --no-startup-id $volume_up
-bindsym XF86AudioLowerVolume exec --no-startup-id $volume_down
-bindsym XF86AudioMute        exec --no-startup-id $volume_toggle_mute
 
-# screen lock
-bindsym $super+$mod+l exec --no-startup-id $locker
-
-# brightness control -- figure out why there is lag
-#bindsym XF86MonBrightnessUp   exec --no-startup-id "xbacklight -inc +25% -time 0"
-#bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec +25% -time 0"
-
-
-# ----------------------------------------------------------------------------------------------------
-# ----------------------------------------------------------------------------------------------------
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    status_command python ~/.config/i3/scripts/i3status.py
-    position top
-    colors {
-        separator            #928374
-        background           #282828
-        statusline           #ebdbb2
-        focused_workspace    #689d6a   #689d6a   #282828
-        active_workspace     #1d2021   #1d2021   #928374
-        inactive_workspace   #32302f   #32302f   #928374
-        urgent_workspace     #cc241d   #cc241d   #ebdbb2
-    }
-}
-
-# hide titlebars, 1pixel borders
-new_window pixel 0
-new_float pixel 0
-for_window [class="^.*"] border pixel 2
-for_window [class="Player"] floating enable
-
-popup_during_fullscreen smart
-
-# border colors           border      background      text        indicator
-client.focused           #689d6a   #689d6a   #282828   #282828
-client.focused_inactive  #1d2021   #1d2021   #928374   #282828
-client.unfocused         #32302f   #32302f   #928374   #282828
-client.urgent            #cc241d   #cc241d   #ebdbb2   #282828
-
-
-# ----------------------------------------------------------------------------------------------------
-# Startup
-# ----------------------------------------------------------------------------------------------------
+####################################################################################################
+##                                            Startup                                             ##
+####################################################################################################
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/assets/background.png
 exec --no-startup-id xss-lock -- $locker
 exec --no-startup-id nm-applet
