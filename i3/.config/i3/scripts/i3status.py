@@ -10,6 +10,7 @@ status.register('backlight', format=' 🔆 {percentage}% ', backlight='intel_bac
 status.register('cpu_usage_graph')
 status.register('temp', format=' CPU: {temp:.0f}°C ')
 status.register('mem', color='#FFFFFF', format=' Memory: {used_mem:4.0f}MB/{total_mem:4.0f}MB ')
+status.register('pomodoro', sound='')
 status.register('battery',
         format=' BAT: {status}{percentage:.2f}% ({consumption}W) {remaining:%E%hh:%Mm} ',
         alert=True,
@@ -19,7 +20,7 @@ status.register('battery',
             'CHR': '↑',
             'FULL': '',
         })
-status.register('network', interface='eth0', format_up=' {v4cidr} ')
+status.register('network', interface='enp1s0', format_up=' {v4cidr} ')
 status.register('network', interface='wlp2s0', format_up=' {essid}{quality:3.0f}% ({v4}) ',)
 
 
