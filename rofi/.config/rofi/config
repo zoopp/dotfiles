@@ -30,8 +30,8 @@ rofi.parse-hosts:                    false
 rofi.parse-known-hosts:              true
 rofi.combi-modi:                     drun,run
 rofi.fuzzy:                          true
-rofi.glob:                           false
-rofi.regex:                          false
+rofi.glob:                           true
+rofi.regex:                          true
 rofi.tokenize:                       true
 rofi.m:                              -1
 rofi.line-margin:                    2
