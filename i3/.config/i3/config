@@ -46,8 +46,8 @@ set $locker i3lock -b -d -I 5 -c 282828
 set $launcher rofi -show combi
 set $window_finder rofi -show window
 
-set $brightness_up xbacklight +10 -time 200
-set $brightness_down xbacklight -10 -time 200
+set $brightness_up xbacklight +5 -time 200
+set $brightness_down xbacklight -5 -time 200
 
 set $volume_up amixer -D pulse set Master 5%+ unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_down amixer -D pulse set Master 5%- unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
