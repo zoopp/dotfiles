@@ -25,7 +25,4 @@ fi
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-# Make neovim render using 24bit colors. NEeds a terminal with true color support
-export NVIM_TUI_ENABLE_TRUE_COLOR=1
-
 exec i3

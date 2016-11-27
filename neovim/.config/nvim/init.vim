@@ -98,6 +98,8 @@ let g:python3_host_prog = '/usr/bin/python3'
   " }
 
   " Appearance {
+    set termguicolors                             " Enable true color support
+
     let g:gruvbox_contrast_dark="hard"
     set background=dark
     colorscheme gruvbox
