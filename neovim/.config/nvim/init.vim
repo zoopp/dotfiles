@@ -1,6 +1,7 @@
 "
 " Some constants pointing to local configuration files
 "
+let s:global_ycm_conf_path = '~/.config/nvim/.global_ycm_extra_conf.py'
 let s:local_plugins_path = '~/.config/nvim/local.plugins.vim'
 let s:local_init_path = '~/.config/nvim/local.init.vim'
 
@@ -276,6 +277,7 @@ let g:python3_host_prog = '/usr/bin/python3'
       let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
       let g:ycm_python_binary_path = g:python3_host_prog
+      let g:ycm_global_ycm_extra_conf = expand(s:global_ycm_conf_path)
 
       nmap <leader>j :YcmCompleter GoTo<CR>
       nmap <leader>t :YcmCompleter GetType<CR>
