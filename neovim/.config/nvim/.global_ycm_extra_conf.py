@@ -1,27 +1,50 @@
 # YCM extra conf intended to be used globally. FlagsForFile will attempt to figure out flags in
-# three different ways in the following order:
+# two different ways in the following order:
 #
-#     * from a clang compilation database found in ['build/compile_commands.json',
+#     * from a clang compilation database found in ['compile_commands.json', 'build/compile_commands.json',
 #       '_build/compile_commands.json'] somewhere along the parent path of the file being edited
 #     * from a .clang_complete file found somewhere along the path of the file being edited
-#     * if none of the above succeeded then return a set of fall-back flags defined bellow
+#
+# If both method fail then we assume we start with an empty list of flags. In the end, regardless of
+# success or failure of the above methods, we'll append our base flags.
 #
 # Note that while compilation flags for a specific file are cached inside ycmd, this script will
 # attempt to read the compilation database and .clang_complete file every time a new file is opened.
-# This is a trade-off between speed and usability. If this is too slow for you then consider writing
-# a project specific .ycm_extra_conf.py for your project.
-#
-# TODO: standard c++ includes
-#
+# This is a trade-off between speed and usability. If this is too slow for you then you should write
+# a project specific .ycm_extra_conf.py for your project or, if you have the time submit a pull
+# request that implements some form of caching that avoids rereads. :)
 import os
+import re
+import subprocess
 import ycm_core
 
 
+# We won't get suggestions for standard C++ includes unless we explicitly add them to our list of
+# flags.
+RE_CLANG_CAPTURE_INCLUDES = \
+    re.compile(r'.*?^#include <\.\.\.> search starts here:\s(?P<paths>.*\s)End of search list.$',
+               re.MULTILINE | re.DOTALL)
+
+
+def GetStandardIncludes():
+    call_result = subprocess.run(['clang', '-v', '-E', '-x', 'c++', '-'],
+                                 stdin=subprocess.DEVNULL,
+                                 stdout=subprocess.DEVNULL,
+                                 stderr=subprocess.PIPE)
+    if call_result.returncode == 0:
+        match = RE_CLANG_CAPTURE_INCLUDES.match(call_result.stderr.decode())
+        if match:
+            raw_paths = match.group('paths').split()
+            return [''.join(['-isystem', os.path.realpath(path)]) for path in raw_paths]
+    return []
+
+
+# Tweakable values
 PATH_FLAGS = ['-isystem', '-I', '-iquote', '--sysroot=']
 BUILD_DIRECTORIES = ['build', '_build']
 SOURCE_EXTENSIONS = ['.cpp', '.cxx', '.cc', '.c', '.m', '.mm', '.C']
 HEADER_EXTENSIONS = ['.h', '.hxx', '.hpp', '.hh']
-FALLBACK_FLAGS = [
+BASE_FLAGS = [
     '-Wall',
     '-Wextra',
     '-Werror',
@@ -32,8 +55,7 @@ FALLBACK_FLAGS = [
     '-DNDEBUG',
     '-std=c++14',
     '-xc++',
-    '-I/usr/include/'
-]
+] + GetStandardIncludes()
 
 
 def IsHeaderFile(filename):
@@ -87,7 +109,7 @@ def GetCompilationInfoForFile(compilation_database, filename):
                 compilation_info = compilation_database.GetCompilationInfoForFile(replacement_file)
                 if compilation_info.compiler_flags_:
                     return compilation_info
-        return None
+        return []
     return compilation_database.GetCompilationInfoForFile(filename)
 
 
@@ -99,13 +121,13 @@ def FlagsFromCompilationDatabase(root, filename):
 
         compilation_info = GetCompilationInfoForFile(compilation_db, filename)
         if not compilation_info:
-            return None
+            return []
 
         return MakeRelativePathsInFlagsAbsolute(
             compilation_info.compiler_flags_,
             compilation_info.compiler_working_dir_)
     except:
-        return None
+        return []
 
 
 def FlagsFromClangCompleteFile(root):
@@ -117,21 +139,20 @@ def FlagsFromClangCompleteFile(root):
 
         return MakeRelativePathsInFlagsAbsolute(flags, os.path.dirname(clang_complete_file))
     except:
-        return None
+        return []
 
 
 def FlagsForFile(filename, **kwargs):
-    real_path = os.path.realpath(filename)
+    root_path = os.path.dirname(os.path.realpath(filename))
 
     # Try to lookup flags in the compilation database
-    flags = FlagsFromCompilationDatabase(real_path, filename)
+    flags = FlagsFromCompilationDatabase(root_path, filename)
 
     # Try to lookup flags in .clang_complete file
     if not flags:
-        flags = FlagsFromClangCompleteFile(real_path)
+        flags = FlagsFromClangCompleteFile(root_path)
 
-    # if all else fail, use fall-back flags
-    if not flags:
-        flags = FALLBACK_FLAGS
+    # Finally, also add our base flags
+    flags.extend(BASE_FLAGS)
 
     return {'flags': flags, 'do_cache': True}
