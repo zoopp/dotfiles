@@ -21,7 +21,7 @@ let g:python3_host_prog = '/usr/bin/python3'
       Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
 
       " A file browser tree & a git plugin to go along
-      Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+      Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
       Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
       " Fuzzy finder + vim integration
@@ -65,8 +65,8 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " ReStructuredText {
-      Plug 'Rykka/riv.vim'                        " ReStructuredText integration
-      Plug 'Rykka/InstantRst'                     " Preview rst docs on-the-fly in the browser
+      Plug 'Rykka/riv.vim',    {'for': 'rst'}     " ReStructuredText integration
+      Plug 'Rykka/InstantRst', {'for': 'rst'}     " Preview rst docs on-the-fly in the browser
     " }
 
     " JSON {
