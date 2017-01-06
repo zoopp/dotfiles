@@ -54,6 +54,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     " C++ {
       Plug 'octol/vim-cpp-enhanced-highlight'     " Better C++ syntax highlighting
       Plug 'rhysd/vim-clang-format'               " Clang format
+      Plug 'richq/vim-cmake-completion', {'for': 'cmake'}
     " }
 
     " Markdown {
