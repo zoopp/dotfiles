@@ -151,6 +151,9 @@ let g:python3_host_prog = '/usr/bin/python3'
     map <C-L> <C-W>l
     map <C-H> <C-W>h
 
+    " Open man page 3 for word under cursor
+    nmap <leader>m :Man 3 <C-R><C-W><CR>
+
     " Wrapped lines go down/up to next row rather than to the next line in file
     noremap j gj
     noremap k gk
