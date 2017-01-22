@@ -7,6 +7,7 @@ BASH_ALIASES_LOCAL="$HOME/.bash_aliases.local"
 
 
 alias ls='ls --color=auto -h --group-directories-first'
+alias sl='ls --color=auto -h --group-directories-first'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
