@@ -129,6 +129,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     set scrolloff=3                               " Minimum lines to keep above and below cursor
     set splitright                                " Puts new vsplit windows to the right of the current
     set splitbelow                                " Puts new split windows to the bottom of the current
+    set tags=./tags;/                             " Look for a tags file upwards until found
   " }
 
   " Formatting {
