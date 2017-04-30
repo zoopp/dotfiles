@@ -74,6 +74,10 @@ let g:python3_host_prog = '/usr/bin/python3'
       Plug 'elzr/vim-json'                        " Better JSON support
     " }
 
+    " UML {
+      Plug 'aklt/plantuml-syntax'                 " PlatUML syntax support
+    " "
+
     " If there's a local plugins file then source it
     if filereadable(expand(s:local_plugins_path))
         execute 'source ' . s:local_plugins_path
