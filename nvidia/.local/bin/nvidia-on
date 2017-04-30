@@ -1,0 +1,4 @@
+#!/bin/bash
+
+set -v
+sudo su -c "tee /proc/acpi/bbswitch <<< ON && modprobe -a nvidia nvidia_uvm nvidia_drm nvidia_modeset"
