@@ -124,6 +124,7 @@ let g:python3_host_prog = '/usr/bin/python3'
   " }
 
   " Functionality {
+    set inccommand=nosplit                        " Show incremental effects of substitution commands
     set ignorecase                                " Case insensitive search
     set smartcase                                 " Case sensitive search when upper case characters are present
     set wildmenu                                  " List command completions instead of just completing
@@ -277,6 +278,9 @@ let g:python3_host_prog = '/usr/bin/python3'
 
     " vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
+      "let g:cpp_member_variable_highlight = 1
+      "let g:cpp_class_decl_highlight = 1
+      "let g:cpp_experimental_template_highlight = 1
     " }
 
     " YouCompleteMe {

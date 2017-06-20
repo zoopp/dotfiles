@@ -5,3 +5,5 @@ map <leader>s :call utils#SwitchHdrImpl('cpp', 'hpp')<CR>
 " Useful for code navigation when using tags (i.e. <C-]> will include class
 " name).
 " setlocal iskeyword+=:
+
+map <leader>cf :ClangFormat<CR>
