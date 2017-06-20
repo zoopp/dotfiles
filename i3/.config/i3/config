@@ -183,6 +183,11 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow   width  10 px or 10 ppt
 
+        bindsym shift+h resize shrink width  40 px or 40 ppt
+        bindsym shift+j resize grow   height 40 px or 40 ppt
+        bindsym shift+k resize shrink height 40 px or 40 ppt
+        bindsym shift+l resize grow   width  40 px or 40 ppt
+
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
