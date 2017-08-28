@@ -17,21 +17,20 @@ let g:python3_host_prog = '/usr/bin/python3'
   call plug#begin()
     " General {
       Plug 'morhetz/gruvbox'                      " Color scheme
-      Plug 'vim-airline/vim-airline'              " Status and tab bar
       Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
+      Plug 'vim-airline/vim-airline'              " Status and tab bar
 
       " A file browser tree & a git plugin to go along
-      Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
       Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+      Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
 
       " Fuzzy finder + vim integration
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
       Plug 'junegunn/fzf.vim'
 
-      Plug 'kopischke/vim-stay'                   " Automatic view creation and restoration
+      " Misc
       Plug 'godlygeek/tabular'                    " Tabular alignment
-
-      Plug 'Shougo/vimproc.vim', { 'do': 'make' } " Async execution library
+      Plug 'kopischke/vim-stay'                   " Automatic view creation and restoration
     " }
 
     " General Programming {
@@ -42,13 +41,15 @@ let g:python3_host_prog = '/usr/bin/python3'
       " }
 
       " Code {
+        Plug 'SirVer/ultisnips'                   " Snippets engine
         Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
         Plug 'majutsushi/tagbar'                  " Source code tag browser
-        Plug 'SirVer/ultisnips'                   " Snippets engine
       " }
 
-      Plug 'Raimondi/delimitMate'                 " Auto close matching pairs of characters
-      Plug 'mhinz/vim-signify'                    " Gutter diff indicator that integrates with VCSs
+      " Misc {
+        Plug 'Raimondi/delimitMate'               " Auto close matching pairs of characters
+        Plug 'mhinz/vim-signify'                  " Gutter diff indicator that integrates with VCSs
+      " }
     " }
 
     " C++ {
@@ -66,8 +67,8 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " ReStructuredText {
-      Plug 'Rykka/riv.vim',    {'for': 'rst'}     " ReStructuredText integration
       Plug 'Rykka/InstantRst', {'for': 'rst'}     " Preview rst docs on-the-fly in the browser
+      Plug 'Rykka/riv.vim',    {'for': 'rst'}     " ReStructuredText integration
     " }
 
     " JSON {
@@ -87,20 +88,19 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " Settings {
   " General settings {
-    set showcmd                                   " Show partial command in the last line of the screen
-    set viewoptions=cursor,folds,slash,unix       " What info to store when saving view info
     set clipboard=unnamedplus                     " Use the + register for copy-paste
-    set shortmess+=filmnrxoOtT                    " Abbreviate some messages (avoids 'hit enter')
-    set virtualedit=onemore                       " Allow the cursor to go beyond the last character
-    set history=1000                              " Store a lot of history
-    set spell                                     " Turn on the spell checker
     set hidden                                    " Allow buffer switching without saving
-
+    set history=1000                              " Store a lot of history
+    set lazyredraw                                " Redraw only when we need to
     set noswapfile                                " Disable swap files
+    set shortmess+=filmnrxoOtT                    " Abbreviate some messages (avoids 'hit enter')
+    set showcmd                                   " Show partial command in the last line of the screen
+    set spell                                     " Turn on the spell checker
     set undofile                                  " Turn persistent undo on
     set undolevels=10000                          " Maximum number of changes to record
     set undoreload=10000                          " Maximum number lines to save for undo on a buffer reload
-    set lazyredraw                                " Redraw only when we need to
+    set viewoptions=cursor,folds,slash,unix       " What info to store when saving view info
+    set virtualedit=onemore                       " Allow the cursor to go beyond the last character
   " }
 
   " Appearance {
@@ -110,13 +110,13 @@ let g:python3_host_prog = '/usr/bin/python3'
     set background=dark
     colorscheme gruvbox
 
-    set foldenable                                " Enable folding
-    set number                                    " Always show line numbers
     set cursorline                                " Highlight current line
-    set laststatus=2                              " Always display statusline
-    set showmatch                                 " Show matching brackets
-    set incsearch                                 " Find as you type search
+    set foldenable                                " Enable folding
     set hlsearch                                  " Highlight search terms
+    set incsearch                                 " Find as you type search
+    set laststatus=2                              " Always display statusline
+    set number                                    " Always show line numbers
+    set showmatch                                 " Show matching brackets
 
     " Highlight problematic whitespace
     set list
@@ -124,28 +124,28 @@ let g:python3_host_prog = '/usr/bin/python3'
   " }
 
   " Functionality {
-    set inccommand=nosplit                        " Show incremental effects of substitution commands
     set ignorecase                                " Case insensitive search
-    set smartcase                                 " Case sensitive search when upper case characters are present
-    set wildmenu                                  " List command completions instead of just completing
-    set wildmode=list:longest,full                " Command <Tab> completion, list matches, then longest common part, then everything else
-    set whichwrap=b,s,h,l,<,>,[,]                 " Backspace and cursor keys wrap too
+    set inccommand=nosplit                        " Show incremental effects of substitution commands
+    set mouse=a                                   " Enable mouse usage for when we get lazy
     set scrolljump=5                              " Lines to scroll when cursor leaves screen
     set scrolloff=3                               " Minimum lines to keep above and below cursor
-    set splitright                                " Puts new vsplit windows to the right of the current
+    set smartcase                                 " Case sensitive search when upper case characters are present
     set splitbelow                                " Puts new split windows to the bottom of the current
+    set splitright                                " Puts new vsplit windows to the right of the current
     set tags=./tags;/                             " Look for a tags file upwards until found
-    set mouse=a                                   " Enable mouse usage for when we get lazy
+    set whichwrap=b,s,h,l,<,>,[,]                 " Backspace and cursor keys wrap too
+    set wildmenu                                  " List command completions instead of just completing
+    set wildmode=list:longest,full                " Command <Tab> completion, list matches, then longest common part, then everything else
   " }
 
   " Formatting {
-    set shiftwidth=4                              " Use indents of 4 spaces
-    set tabstop=4                                 " Indent by 4 columns on Tab press
-    set softtabstop=4                             " Let backspace delete indent
-    set shiftround                                " Round indent to multiple of 'shiftwidth'
     set expandtab                                 " Insert spaces instead of tabs
-    set nowrap                                    " Don't wrap long lines
     set nojoinspaces                              " Prevents inserting two spaces after punctuation on a join
+    set nowrap                                    " Don't wrap long lines
+    set shiftround                                " Round indent to multiple of 'shiftwidth'
+    set shiftwidth=4                              " Use indents of 4 spaces
+    set softtabstop=4                             " Let backspace delete indent
+    set tabstop=4                                 " Indent by 4 columns on Tab press
   " }
 
   " General keybinds {
