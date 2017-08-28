@@ -102,6 +102,7 @@ def FindFileUpwards(file_name, start_path, additional_folders=[]):
 
 def GetCompilationInfoForFile(compilation_database, filename):
     if IsHeaderFile(filename):
+        """ FIXME: this only works for headers in the same directory. """
         basename = os.path.splitext(filename)[0]
         for extension in SOURCE_EXTENSIONS:
             replacement_file = basename + extension
