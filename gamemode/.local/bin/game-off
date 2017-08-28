@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+sudo cpupower frequency-set -g powersave
+nvidia-settings -a [gpu:0]/GPUPowerMizerMode=0
+compton &
