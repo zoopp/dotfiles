@@ -53,7 +53,7 @@ BASE_FLAGS = [
     '-fexceptions',
     '-ferror-limit=10000',
     '-DNDEBUG',
-    '-std=c++14',
+    '-std=c++1z',
     '-xc++',
 ] + GetStandardIncludes()
 
