@@ -15,3 +15,9 @@
 
 /usr/bin/zathura %F
   \.pdf$
+
+/usr/bin/termite -e "vim %f"
+  \.cs$
+  \.cpp$
+  \.h$
+  \.c$
