@@ -36,6 +36,11 @@ new_float pixel 0
 for_window [class="^.*"] border pixel 2
 for_window [class="Player"] floating enable
 
+# fix for some unity seizures
+for_window [class="Unity"] floating enable
+for_window [class="Unity" title="Unity -"] floating disable
+
+#
 popup_during_fullscreen smart
 hide_edge_borders smart
 
@@ -47,8 +52,8 @@ set $locker i3lock -b -d -I 5 -c 282828
 set $launcher rofi -show combi
 set $window_finder rofi -show window
 
-set $brightness_up xbacklight +5 -time 200
-set $brightness_down xbacklight -5 -time 200
+set $brightness_up   brightnessctl s +5%
+set $brightness_down brightnessctl s  5%-
 
 set $volume_up amixer -D pulse set Master 5%+ unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_down amixer -D pulse set Master 5%- unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
