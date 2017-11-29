@@ -58,6 +58,7 @@ set $brightness_down brightnessctl s  5%-
 set $volume_up amixer -D pulse set Master 5%+ unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_down amixer -D pulse set Master 5%- unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_toggle_mute amixer -D pulse set Master toggle
+set $volume_toggle_mic_mute amixer -D pulse set Capture toggle
 
 
 ####################################################################################################
@@ -86,6 +87,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id $brightness_down
 bindsym XF86AudioRaiseVolume exec --no-startup-id $volume_up
 bindsym XF86AudioLowerVolume exec --no-startup-id $volume_down
 bindsym XF86AudioMute        exec --no-startup-id $volume_toggle_mute
+bindsym XF86AudioMicMute     exec --no-startup-id $volume_toggle_mic_mute
 
 
 ################################################################################
