@@ -1,7 +1,6 @@
 "
 " Some constants pointing to local configuration files
 "
-let s:global_ycm_conf_path = '~/.config/nvim/.global_ycm_extra_conf.py'
 let s:local_plugins_path = '~/.config/nvim/local.plugins.vim'
 let s:local_init_path = '~/.config/nvim/local.init.vim'
 
@@ -42,7 +41,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 
       " Code {
         Plug 'SirVer/ultisnips'                   " Snippets engine
-        Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
         Plug 'majutsushi/tagbar'                  " Source code tag browser
       " }
 
@@ -237,10 +235,6 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " Python-mode {
-      " Fixes interference with YouCompleteMe
-      let g:pymode_virtualenv=1                           " Autodetect virtualenv
-      let g:pymode_rope = 0                               " Disable rope for now
-      let g:pymode_rope_complete_on_dot = 0               " Fixes interaction with YCM
     " }
 
     " Tagbar {
@@ -284,19 +278,12 @@ let g:python3_host_prog = '/usr/bin/python3'
       "let g:cpp_experimental_template_highlight = 1
     " }
 
-    " YouCompleteMe {
+
+    " YouCompleteMe Leftover {
       " Remap Ultisnips for compatibility with YCM
       let g:UltiSnipsExpandTrigger = '<C-j>'
       let g:UltiSnipsJumpForwardTrigger = '<C-j>'
       let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-
-      let g:ycm_python_binary_path = g:python3_host_prog
-      let g:ycm_global_ycm_extra_conf = expand(s:global_ycm_conf_path)
-
-      nmap <leader>j :YcmCompleter GoTo<CR>
-      nmap <leader>t :YcmCompleter GetType<CR>
-      nmap <leader>f :YcmCompleter FixIt<CR>
-      nmap <leader>d :YcmCompleter GetDoc<CR>
     " }
   " }
 " }
