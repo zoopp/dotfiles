@@ -207,10 +207,7 @@ bindsym $super+r mode "resize"
 ##                                            Startup                                             ##
 ####################################################################################################
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/assets/background.png
-exec --no-startup-id xss-lock -- $locker
 exec --no-startup-id nm-applet
-exec --no-startup-id compton
-exec --no-startup-id thunderbird
 exec --no-startup-id redshift-gtk
 
 
