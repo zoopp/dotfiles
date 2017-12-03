@@ -63,7 +63,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " Python {
-      Plug 'klen/python-mode'                     " Better Python support
+      Plug 'python-mode/python-mode'              " Better Python support
     " }
 
     " ReStructuredText {
