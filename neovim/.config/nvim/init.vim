@@ -39,9 +39,10 @@ let g:python3_host_prog = '/usr/bin/python3'
         Plug 'sophacles/vim-bundle-mako'          " Mako syntax highlighting
       " }
 
-      " Code {
+      " Code & Completion {
         Plug 'SirVer/ultisnips'                   " Snippets engine
         Plug 'majutsushi/tagbar'                  " Source code tag browser
+        Plug 'roxma/nvim-completion-manager'
       " }
 
       " Misc {
@@ -61,7 +62,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " Python {
-      Plug 'klen/python-mode'                     " Better Python support
+      Plug 'python-mode/python-mode'              " Better Python support
     " }
 
     " ReStructuredText {
@@ -75,7 +76,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 
     " UML {
       Plug 'aklt/plantuml-syntax'                 " PlatUML syntax support
-    " "
+    " }
 
     " If there's a local plugins file then source it
     if filereadable(expand(s:local_plugins_path))
@@ -91,7 +92,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     set history=1000                              " Store a lot of history
     set lazyredraw                                " Redraw only when we need to
     set noswapfile                                " Disable swap files
-    set shortmess+=filmnrxoOtT                    " Abbreviate some messages (avoids 'hit enter')
+    set shortmess=ac                              " Abbreviate/Hide some messages (avoids 'hit enter')
     set showcmd                                   " Show partial command in the last line of the screen
     set spell                                     " Turn on the spell checker
     set undofile                                  " Turn persistent undo on
@@ -234,7 +235,28 @@ let g:python3_host_prog = '/usr/bin/python3'
       let g:NERDTreeMouseMode=2
     " }
 
+    " NCM {
+      let g:cm_refresh_length=1
+      let g:cm_matcher = {'module': 'cm_matchers.fuzzy_matcher', 'case': 'smartcase'}
+      let g:cm_completekeys="\<Plug>(cm_omnifunc)"
+
+      " Change between popup items with tab / shift-tab
+      inoremap <expr> <Tab>   pumvisible() ? '<C-n>' : '<Tab>'
+      inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
+
+      " Expand snippet / completion on enter
+      imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<Plug>(expand_snippet)"
+                                                                \ : "\<CR>")
+      imap <expr> <CR>  (pumvisible() ? "\<C-y>\<Plug>(expand_or_nl)" : "\<CR>")
+
+      " Force completion pop-up
+      imap <C-Space> <Plug>(cm_force_refresh)
+    " }
+
     " Python-mode {
+      let g:pymode_lint_checkers=['pylint', 'pyflakes', 'pep8', 'mccabe']
+      let g:pymode_python = 'python3'
+      let g:pymode_rope = 0
     " }
 
     " Tagbar {
@@ -271,19 +293,19 @@ let g:python3_host_prog = '/usr/bin/python3'
       \ }
     " }
 
+    " UltiSnips {
+      let g:UltiSnipsExpandTrigger = '<C-j>'
+      let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+      let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+      imap <expr> <Plug>(expand_snippet) "\<C-j>"
+    " }
+
     " vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
       "let g:cpp_member_variable_highlight = 1
       "let g:cpp_class_decl_highlight = 1
       "let g:cpp_experimental_template_highlight = 1
-    " }
-
-
-    " YouCompleteMe Leftover {
-      " Remap Ultisnips for compatibility with YCM
-      let g:UltiSnipsExpandTrigger = '<C-j>'
-      let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-      let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
     " }
   " }
 " }
