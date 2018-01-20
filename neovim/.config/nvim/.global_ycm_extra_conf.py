@@ -1,9 +1,11 @@
-# YCM extra conf intended to be used globally. FlagsForFile will attempt to figure out flags in
-# two different ways in the following order:
+# YCM extra conf intended to be used globally. FlagsForFile will attempt to figure out flags in two
+# different ways in the following order:
 #
-#     * from a clang compilation database found in ['compile_commands.json', 'build/compile_commands.json',
-#       '_build/compile_commands.json'] somewhere along the parent path of the file being edited
-#     * from a .clang_complete file found somewhere along the path of the file being edited
+#     * from a clang compilation database found in ['compile_commands.json',
+#     'build/compile_commands.json', '_build/compile_commands.json'] somewhere along the parent path
+#
+#     of the file being edited.
+#     * from a .clang_complete file found somewhere along the path of the file being edited.
 #
 # If both method fail then we assume we start with an empty list of flags. In the end, regardless of
 # success or failure of the above methods, we'll append our base flags.
@@ -48,11 +50,7 @@ BASE_FLAGS = [
     '-Wall',
     '-Wextra',
     '-Werror',
-    '-Wno-long-long',
-    '-Wno-variadic-macros',
     '-fexceptions',
-    '-ferror-limit=10000',
-    '-DNDEBUG',
     '-std=c++1z',
     '-xc++',
 ] + GetStandardIncludes()
@@ -102,14 +100,16 @@ def FindFileUpwards(file_name, start_path, additional_folders=[]):
 
 def GetCompilationInfoForFile(compilation_database, filename):
     if IsHeaderFile(filename):
-        """ FIXME: this only works for headers in the same directory. """
         basename = os.path.splitext(filename)[0]
         for extension in SOURCE_EXTENSIONS:
-            replacement_file = basename + extension
-            if os.path.exists(replacement_file):
-                compilation_info = compilation_database.GetCompilationInfoForFile(replacement_file)
-                if compilation_info.compiler_flags_:
-                    return compilation_info
+            replacement_files = [basename + extension,
+                                 basename.replace("/include/", "/src/") + extension]
+            for replacement_file in replacement_files:
+                if os.path.exists(replacement_file):
+                    compilation_info = \
+                        compilation_database.GetCompilationInfoForFile(replacement_file)
+                    if compilation_info.compiler_flags_:
+                        return compilation_info
         return []
     return compilation_database.GetCompilationInfoForFile(filename)
 
@@ -153,7 +153,8 @@ def FlagsForFile(filename, **kwargs):
     if not flags:
         flags = FlagsFromClangCompleteFile(root_path)
 
-    # Finally, also add our base flags
+    # Lastly, add our base flags
     flags.extend(BASE_FLAGS)
 
-    return {'flags': flags, 'do_cache': True}
+    return {'flags': flags,
+            'do_cache': True}
