@@ -42,8 +42,9 @@ let g:python3_host_prog = '/usr/bin/python3'
 
       " Code {
         Plug 'SirVer/ultisnips'                   " Snippets engine
-        Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer' }
+        Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
         Plug 'majutsushi/tagbar'                  " Source code tag browser
+        Plug 'tenfyzhong/CompleteParameter.vim'   " Testing
       " }
 
       " Misc {
@@ -63,7 +64,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " Python {
-      Plug 'python-mode/python-mode'              " Better Python support
+      Plug 'python-mode/python-mode', {'branch': 'develop'} " Better Python support
     " }
 
     " ReStructuredText {
@@ -145,7 +146,6 @@ let g:python3_host_prog = '/usr/bin/python3'
     set shiftround                                " Round indent to multiple of 'shiftwidth'
     set shiftwidth=4                              " Use indents of 4 spaces
     set softtabstop=4                             " Let backspace delete indent
-    set tabstop=4                                 " Indent by 4 columns on Tab press
   " }
 
   " General keybinds {
@@ -275,6 +275,22 @@ let g:python3_host_prog = '/usr/bin/python3'
           \ },
           \ 'sort': 0,
       \ }
+    " }
+
+    " CompleteParameter.vim {
+      inoremap <silent> <expr> ( complete_parameter#pre_complete("()" )
+      " nmap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+      smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+      imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+
+      " nmap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+      smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+      imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+
+      "imap <m-d> <Plug>(complete_parameter#overload_down)
+      "imap <m-u> <Plug>(complete_parameter#overload_up)
+
+      "imap <expr> <CR> (pumvisible() ? "(" : "\<CR>")
     " }
 
     " vim-cpp-enhanced-highlight {
