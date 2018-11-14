@@ -1,12 +1,8 @@
-plugins: chroma fromfilename fetchart ftintitle lastgenre lyrics mbsync metasync replaygain scrub missing
+plugins: chroma fromfilename fetchart ftintitle lastgenre lyrics mbsync metasync scrub missing
 
 ui:
     color: yes
 
 import:
     group_albums: yes
-
-replaygain:
-    backend: gstreamer
-
 
