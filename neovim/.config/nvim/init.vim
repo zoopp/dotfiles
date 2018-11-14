@@ -64,7 +64,8 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " Python {
-      Plug 'python-mode/python-mode', {'branch': 'develop'} " Better Python support
+      Plug 'python-mode/python-mode', {'branch': 'develop'}  " Better Python support
+      Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Semantic highlight
     " }
 
     " ReStructuredText {
@@ -243,6 +244,9 @@ let g:python3_host_prog = '/usr/bin/python3'
       let g:pymode_rope_complete_on_dot = 0               " Fixes interaction with YCM
     " }
 
+    " semshi {
+      let g:semshi#excluded_hl_groups = [] " Highlight local group as well
+    " }
     " Tagbar {
       nmap <leader>tb :TagbarToggle<CR>
 
