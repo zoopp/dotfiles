@@ -310,7 +310,9 @@ let g:python3_host_prog = '/usr/bin/python3'
       let g:UltiSnipsJumpForwardTrigger = '<C-j>'
       let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-      let g:ycm_python_binary_path = g:python3_host_prog
+      " TODO: I don't remember why I added this. It does however interfere with virtual envs so
+      " keep it off for now.
+      "let g:ycm_python_binary_path = g:python3_host_prog
       let g:ycm_global_ycm_extra_conf = expand(s:global_ycm_conf_path)
 
       nmap <leader>j :YcmCompleter GoTo<CR>
