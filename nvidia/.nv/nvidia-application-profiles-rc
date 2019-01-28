@@ -1,0 +1,22 @@
+{
+    "rules": [
+        {
+            "pattern": {
+                "feature": "procname",
+                "matches": "Unity"
+            },
+            "profile": "Unity Editor"
+        }
+    ],
+    "profiles": [
+        {
+            "name": "Unity Editor",
+            "settings": [
+                {
+                    "key": "GLSyncToVblank",
+                    "value": false
+                }
+            ]
+        }
+    ]
+}
