@@ -6,7 +6,7 @@
 ####################################################################################################
 ##                                           Appearance                                           ##
 ####################################################################################################
-font xft:Meslo LG S DZ for Powerline 10.8
+font xft:Meslo LG S DZ 10.8
 
 # colorclass             border   background   text     indicator
 client.focused           #689d6a  #689d6a      #282828  #282828
