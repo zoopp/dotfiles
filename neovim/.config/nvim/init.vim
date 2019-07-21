@@ -285,22 +285,6 @@ let g:python3_host_prog = '/usr/bin/python3'
       \ }
     " }
 
-    " CompleteParameter.vim {
-      inoremap <silent> <expr> ( complete_parameter#pre_complete("()" )
-      " nmap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-      smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-      imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
-
-      " nmap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-      smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-      imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
-
-      "imap <m-d> <Plug>(complete_parameter#overload_down)
-      "imap <m-u> <Plug>(complete_parameter#overload_up)
-
-      "imap <expr> <CR> (pumvisible() ? "(" : "\<CR>")
-    " }
-
     " vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
       "let g:cpp_member_variable_highlight = 1
