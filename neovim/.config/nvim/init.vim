@@ -26,7 +26,7 @@ let g:python3_host_prog = '/usr/bin/python3'
       Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
 
       " Fuzzy finder + vim integration
-      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
       Plug 'junegunn/fzf.vim'
 
       " Misc
