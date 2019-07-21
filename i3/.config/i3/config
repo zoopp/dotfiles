@@ -40,6 +40,10 @@ for_window [class="Player"] floating enable
 for_window [class="Unity"] floating enable
 for_window [class="Unity" title="Unity -"] floating disable
 
+for_window [class="Ghidra"] floating enable
+for_window [class="Ghidra" title="CodeBrowser"] floating disable
+for_window [class="Ghidra" title="Version Tracking"] floating disable
+
 #
 popup_during_fullscreen smart
 hide_edge_borders smart
