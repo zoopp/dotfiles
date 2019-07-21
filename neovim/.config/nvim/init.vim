@@ -16,7 +16,8 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Plugins {
   call plug#begin()
     " General {
-      Plug 'morhetz/gruvbox'                      " Color scheme
+      " Plug 'morhetz/gruvbox'                    " Color scheme
+      Plug 'aonemd/kuroi.vim'                     " Testing new color scheme
       Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
       Plug 'vim-airline/vim-airline'              " Status and tab bar
 
@@ -44,7 +45,10 @@ let g:python3_host_prog = '/usr/bin/python3'
         Plug 'SirVer/ultisnips'                   " Snippets engine
         Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
         Plug 'majutsushi/tagbar'                  " Source code tag browser
-        Plug 'tenfyzhong/CompleteParameter.vim'   " Testing
+      " }
+
+      " VCS {
+        Plug 'tpope/vim-fugitive'                 " Git integration
       " }
 
       " Misc {
@@ -110,7 +114,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 
     let g:gruvbox_contrast_dark="hard"
     set background=dark
-    colorscheme gruvbox
+    colorscheme kuroi
 
     set cursorline                                " Highlight current line
     set foldenable                                " Enable folding
