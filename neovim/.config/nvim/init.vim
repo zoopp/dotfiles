@@ -16,8 +16,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Plugins {
   call plug#begin()
     " General {
-      " Plug 'morhetz/gruvbox'                    " Color scheme
-      Plug 'aonemd/kuroi.vim'                     " Testing new color scheme
+      Plug 'morhetz/gruvbox'                    " Color scheme
       Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
       Plug 'vim-airline/vim-airline'              " Status and tab bar
 
@@ -114,7 +113,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 
     let g:gruvbox_contrast_dark="hard"
     set background=dark
-    colorscheme kuroi
+    colorscheme gruvbox
 
     set cursorline                                " Highlight current line
     set foldenable                                " Enable folding
