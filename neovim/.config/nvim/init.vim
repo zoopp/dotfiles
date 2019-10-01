@@ -16,34 +16,32 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Plugins {
   call plug#begin()
     " General {
-      Plug 'morhetz/gruvbox'                    " Color scheme
+      Plug 'morhetz/gruvbox'                      " Color scheme
       Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
       Plug 'vim-airline/vim-airline'              " Status and tab bar
 
       " A file browser tree & a git plugin to go along
-      Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
       Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
+      Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
       " Fuzzy finder + vim integration
       Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
       Plug 'junegunn/fzf.vim'
 
       " Misc
-      Plug 'godlygeek/tabular'                    " Tabular alignment
-      Plug 'kopischke/vim-stay'                   " Automatic view creation and restoration
+      Plug 'junegunn/vim-easy-align'              " Text alignment
+      Plug 'zhimsel/vim-stay'                     " Automatic view creation and restoration
     " }
 
     " General Programming {
       " Syntax {
         Plug 'PotatoesMaster/i3-vim-syntax'       " i3 config syntax highlight
         Plug 'beyondmarc/glsl.vim'                " GLSL syntax highlighting
-        Plug 'sophacles/vim-bundle-mako'          " Mako syntax highlighting
       " }
 
       " Code {
-        Plug 'SirVer/ultisnips'                   " Snippets engine
         Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
-        Plug 'majutsushi/tagbar'                  " Source code tag browser
+        Plug 'majutsushi/tagbar'                  " Tags browser
       " }
 
       " VCS {
@@ -72,17 +70,12 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " ReStructuredText {
-      Plug 'Rykka/InstantRst', {'for': 'rst'}     " Preview rst docs on-the-fly in the browser
-      Plug 'Rykka/riv.vim',    {'for': 'rst'}     " ReStructuredText integration
+      Plug 'gu-fan/riv.vim',    {'for': 'rst'}     " ReStructuredText integration
     " }
 
     " JSON {
-      Plug 'elzr/vim-json'                        " Better JSON support
+      Plug 'elzr/vim-json'                         " Better JSON support
     " }
-
-    " UML {
-      Plug 'aklt/plantuml-syntax'                 " PlatUML syntax support
-    " "
 
     " If there's a local plugins file then source it
     if filereadable(expand(s:local_plugins_path))
@@ -93,24 +86,25 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " Settings {
   " General settings {
-    set clipboard=unnamedplus                     " Use the + register for copy-paste
+    set clipboard+=unnamedplus                    " Use the + register for copy-paste
     set hidden                                    " Allow buffer switching without saving
-    set history=1000                              " Store a lot of history
-    set lazyredraw                                " Redraw only when we need to
+    set lazyredraw                                " Redraw only when needed
     set noswapfile                                " Disable swap files
     set shortmess+=filmnrxoOtT                    " Abbreviate some messages (avoids 'hit enter')
-    set showcmd                                   " Show partial command in the last line of the screen
     set spell                                     " Turn on the spell checker
     set undofile                                  " Turn persistent undo on
     set undolevels=10000                          " Maximum number of changes to record
     set undoreload=10000                          " Maximum number lines to save for undo on a buffer reload
     set viewoptions=cursor,folds,slash,unix       " What info to store when saving view info
     set virtualedit=onemore                       " Allow the cursor to go beyond the last character
+    set scrolloff=10                              " Minimal number of lines to keep above/bellow the cursor
+    set scrolljump=1                              " Number of lines to scroll when the cursor gets off screen
   " }
 
   " Appearance {
-    set termguicolors                             " Enable true color support
+    set termguicolors                             " Enable 24-bit RGB color support
 
+    let g:gruvbox_italic=1
     let g:gruvbox_contrast_dark="hard"
     set background=dark
     colorscheme gruvbox
@@ -118,35 +112,26 @@ let g:python3_host_prog = '/usr/bin/python3'
     set cursorline                                " Highlight current line
     set foldenable                                " Enable folding
     set hlsearch                                  " Highlight search terms
-    set incsearch                                 " Find as you type search
-    set laststatus=2                              " Always display statusline
-    set number                                    " Always show line numbers
     set showmatch                                 " Show matching brackets
 
-    " Highlight problematic whitespace
+    " Highlight problematic white space
     set list
     set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
   " }
 
   " Functionality {
     set ignorecase                                " Case insensitive search
+    set smartcase                                 " Unless upper case characters are present
     set inccommand=nosplit                        " Show incremental effects of substitution commands
-    set mouse=a                                   " Enable mouse usage for when we get lazy
-    set scrolljump=5                              " Lines to scroll when cursor leaves screen
-    set scrolloff=3                               " Minimum lines to keep above and below cursor
-    set smartcase                                 " Case sensitive search when upper case characters are present
+    set mouse=a                                   " Allow mouse interaction
     set splitbelow                                " Puts new split windows to the bottom of the current
     set splitright                                " Puts new vsplit windows to the right of the current
-    set tags=./tags;/                             " Look for a tags file upwards until found
     set whichwrap=b,s,h,l,<,>,[,]                 " Backspace and cursor keys wrap too
     set wildmenu                                  " List command completions instead of just completing
     set wildmode=list:longest,full                " Command <Tab> completion, list matches, then longest common part, then everything else
-  " }
-
-  " Formatting {
     set expandtab                                 " Insert spaces instead of tabs
     set nojoinspaces                              " Prevents inserting two spaces after punctuation on a join
-    set nowrap                                    " Don't wrap long lines
+    set nowrap                                    " Don't wrap long lines by default
     set shiftround                                " Round indent to multiple of 'shiftwidth'
     set shiftwidth=4                              " Use indents of 4 spaces
     set softtabstop=4                             " Let backspace delete indent
@@ -156,14 +141,14 @@ let g:python3_host_prog = '/usr/bin/python3'
     " Map leader key to space
     let mapleader="\<Space>"
 
-    " Easier moving between splits; conflict with digraph mapping.
+    " Open man page 3 for word under cursor
+    nmap <leader>m :Man 3 <C-R><C-W><CR>
+
+    " Easier moving between splits
     map <C-J> <C-W>j
     map <C-K> <C-W>k
     map <C-L> <C-W>l
     map <C-H> <C-W>h
-
-    " Open man page 3 for word under cursor
-    nmap <leader>m :Man 3 <C-R><C-W><CR>
 
     " Wrapped lines go down/up to next row rather than to the next line in file
     noremap j gj
@@ -173,7 +158,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     vnoremap < <gv
     vnoremap > >gv
 
-    " Make arrow keys do something useful
+    " Use arrow keys to resize splits
     nnoremap <Left> :vertical resize +2<CR>
     nnoremap <Right> :vertical resize -2<CR>
     nnoremap <Up> :resize -2<CR>
@@ -191,10 +176,6 @@ let g:python3_host_prog = '/usr/bin/python3'
     command! -bang Q q<bang>
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
-
-
-    " For when you forget to edit the file with su permissions
-    cmap w!! w !sudo tee % >/dev/null
   " }
 
   " Plugins {
@@ -250,6 +231,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     " semshi {
       let g:semshi#excluded_hl_groups = [] " Highlight local group as well
     " }
+
     " Tagbar {
       nmap <leader>tb :TagbarToggle<CR>
 
