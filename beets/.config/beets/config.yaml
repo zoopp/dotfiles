@@ -1,8 +1,0 @@
-plugins: chroma fromfilename fetchart ftintitle lastgenre lyrics mbsync metasync scrub missing
-
-ui:
-    color: yes
-
-import:
-    group_albums: yes
-
