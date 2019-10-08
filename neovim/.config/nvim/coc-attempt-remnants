@@ -1,0 +1,50 @@
+" diagnostics -> info (current-line)
+"             -> next
+"             -> previous
+"             -> next-error
+"             -> previous-error
+"
+" code -> jump -> definition(s)
+"              -> declaration(s)
+"              -> implementation(s)
+"              -> definition(s)
+"              -> references
+"
+"      -> refactor -> rename symbol
+"                  -> refactor (open refactor window for refactor of current symbol)
+"
+"      -> format range
+"      -> format whole buffer
+"
+"      -> get and run code action(s) for current line
+"      -> get and run code aciton(s) for range
+"
+"      -> run code lens action
+"      -> run quckfix action for diagnostics on current line
+
+// TODO: Check out code lens feature of coc.nvim
+// TODO: Seems interesting, investigate initial after setup
+// TODO: bind from coc-key-mappings
+// TODO: g:coc_global_extensions and coc#add_extension()
+// TODO: b:coc_diagnostic_info, see :h coc-status also :h airline-coc
+// TODO: CocAction, CocHasProvider
+
+function! s:is_whitespace_before_cursor() abort
+  let col_idx = col('.') - 1
+  return col_idx == 0 || getline('.')[col_idx - 1]  =~ '\s'
+endfunction
+
+" Bindings to better navigate suggestions
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <CR>  pumvisible() ? "\<C-y>" : "\<CR>"
+
+" Force suggestions on ctrl-backspace, backspace and ctrl-space
+inoremap <expr> <C-H> "\<C-w>" . coc#refresh()
+inoremap <expr> <C-space> coc#refresh()
+inoremap <expr> <BS>
+        \ <SID>is_whitespace_before_cursor() ? "\<BS>"
+        \                                    : "\<BS>" . coc#refresh()
+
+nmap <leader>d <Plug>(coc-definition)

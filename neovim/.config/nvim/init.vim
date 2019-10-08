@@ -1,14 +1,10 @@
-"
 " Some constants pointing to local configuration files
-"
 let s:global_ycm_conf_path = '~/.config/nvim/.global_ycm_extra_conf.py'
 let s:local_plugins_path = '~/.config/nvim/local.plugins.vim'
 let s:local_init_path = '~/.config/nvim/local.init.vim'
 
 
-"
 " Don't rely on the neovim python client to be installed in a virtualenv
-"
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
@@ -36,7 +32,6 @@ let g:python3_host_prog = '/usr/bin/python3'
     " General Programming {
       " Syntax {
         Plug 'PotatoesMaster/i3-vim-syntax'       " i3 config syntax highlight
-        Plug 'beyondmarc/glsl.vim'                " GLSL syntax highlighting
       " }
 
       " Code {
@@ -56,7 +51,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 
     " C++ {
       Plug 'octol/vim-cpp-enhanced-highlight'     " Better C++ syntax highlighting
-      Plug 'rhysd/vim-clang-format'               " Clang format
       Plug 'richq/vim-cmake-completion', {'for': 'cmake'}
     " }
 
@@ -70,11 +64,11 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " ReStructuredText {
-      Plug 'gu-fan/riv.vim',    {'for': 'rst'}     " ReStructuredText integration
+      Plug 'gu-fan/riv.vim',    {'for': 'rst'}    " ReStructuredText integration
     " }
 
     " JSON {
-      Plug 'elzr/vim-json'                         " Better JSON support
+      Plug 'elzr/vim-json'                        " Better JSON support
     " }
 
     " If there's a local plugins file then source it
@@ -142,13 +136,13 @@ let g:python3_host_prog = '/usr/bin/python3'
     let mapleader="\<Space>"
 
     " Open man page 3 for word under cursor
-    nmap <leader>m :Man 3 <C-R><C-W><CR>
+    nnoremap <leader>m :Man 3 <C-r><C-w><CR>
 
     " Easier moving between splits
-    map <C-J> <C-W>j
-    map <C-K> <C-W>k
-    map <C-L> <C-W>l
-    map <C-H> <C-W>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+    nnoremap <C-h> <C-w>h
 
     " Wrapped lines go down/up to next row rather than to the next line in file
     noremap j gj
@@ -185,19 +179,15 @@ let g:python3_host_prog = '/usr/bin/python3'
       let g:airline#extensions#tabline#buffer_idx_mode = 1
 
       " Buffer switching shortcuts
-      nmap <leader>1 <Plug>AirlineSelectTab1
-      nmap <leader>2 <Plug>AirlineSelectTab2
-      nmap <leader>3 <Plug>AirlineSelectTab3
-      nmap <leader>4 <Plug>AirlineSelectTab4
-      nmap <leader>5 <Plug>AirlineSelectTab5
-      nmap <leader>6 <Plug>AirlineSelectTab6
-      nmap <leader>7 <Plug>AirlineSelectTab7
-      nmap <leader>8 <Plug>AirlineSelectTab8
-      nmap <leader>9 <Plug>AirlineSelectTab9
-    " }
-
-    " clang-format {
-      let g:clang_format#detect_style_file = 1
+      nnoremap <leader>1 <Plug>AirlineSelectTab1
+      nnoremap <leader>2 <Plug>AirlineSelectTab2
+      nnoremap <leader>3 <Plug>AirlineSelectTab3
+      nnoremap <leader>4 <Plug>AirlineSelectTab4
+      nnoremap <leader>5 <Plug>AirlineSelectTab5
+      nnoremap <leader>6 <Plug>AirlineSelectTab6
+      nnoremap <leader>7 <Plug>AirlineSelectTab7
+      nnoremap <leader>8 <Plug>AirlineSelectTab8
+      nnoremap <leader>9 <Plug>AirlineSelectTab9
     " }
 
     " Delimitmate {
@@ -207,10 +197,10 @@ let g:python3_host_prog = '/usr/bin/python3'
     " fzf {
       command! FindInProject execute 'FZF' utils#FindProjectRoot()
 
-      map <C-p> :FindInProject<CR>
-      map <leader>l :BLines<CR>
-      map <leader>b :Buffers<CR>
-      map <leader>a :Ag<CR>
+      nnoremap <C-p> :FindInProject<CR>
+      nnoremap <leader>l :BLines<CR>
+      nnoremap <leader>b :Buffers<CR>
+      nnoremap <leader>a :Ag<CR>
     " }
 
     " NERDTree {
@@ -221,15 +211,13 @@ let g:python3_host_prog = '/usr/bin/python3'
       let g:NERDTreeMouseMode=2
     " }
 
-    " Python-mode {
-      " Fixes interference with YouCompleteMe
+    " python-mode {
       let g:pymode_virtualenv=1                           " Autodetect virtualenv
-      let g:pymode_rope = 0                               " Disable rope for now
-      let g:pymode_rope_complete_on_dot = 0               " Fixes interaction with YCM
+      let g:pymode_rope = 0                               " Disable rope
     " }
 
     " semshi {
-      let g:semshi#excluded_hl_groups = [] " Highlight local group as well
+      let g:semshi#excluded_hl_groups = []                " Highlight local group as well
     " }
 
     " Tagbar {
@@ -238,12 +226,12 @@ let g:python3_host_prog = '/usr/bin/python3'
       let g:tagbar_type_markdown = {
           \ 'ctagstype': 'markdown',
           \ 'ctagsbin' : 'markdown2ctags',
-          \ 'ctagsargs' : '-f - --sort=yes',
+          \ 'ctagsargs' : '-f - --sort=yes --sro=»',
           \ 'kinds' : [
               \ 's:sections',
               \ 'i:images'
           \ ],
-          \ 'sro' : '|',
+          \ 'sro' : '»',
           \ 'kind2scope' : {
               \ 's' : 'section',
           \ },
@@ -252,13 +240,13 @@ let g:python3_host_prog = '/usr/bin/python3'
 
       let g:tagbar_type_rst = {
           \ 'ctagstype': 'rst',
-          \ 'ctagsbin' : '/path/to/rst2ctags.py',
-          \ 'ctagsargs' : '-f - --sort=yes',
+          \ 'ctagsbin' : 'rst2ctags',
+          \ 'ctagsargs' : '-f - --sort=yes --sro=»',
           \ 'kinds' : [
               \ 's:sections',
               \ 'i:images'
           \ ],
-          \ 'sro' : '|',
+          \ 'sro' : '»',
           \ 'kind2scope' : {
               \ 's' : 'section',
           \ },
@@ -268,26 +256,19 @@ let g:python3_host_prog = '/usr/bin/python3'
 
     " vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
-      "let g:cpp_member_variable_highlight = 1
-      "let g:cpp_class_decl_highlight = 1
-      "let g:cpp_experimental_template_highlight = 1
     " }
 
     " YouCompleteMe {
-      " Remap Ultisnips for compatibility with YCM
-      let g:UltiSnipsExpandTrigger = '<C-j>'
-      let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-      let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-
-      " TODO: I don't remember why I added this. It does however interfere with virtual envs so
-      " keep it off for now.
-      "let g:ycm_python_binary_path = g:python3_host_prog
       let g:ycm_global_ycm_extra_conf = expand(s:global_ycm_conf_path)
+      let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
+      let g:ycm_key_list_previous_completion = ['<S-TAB>', '<C-k>']
+      let g:ycm_key_invoke_completion = '<C-Space>'
 
-      nmap <leader>j :YcmCompleter GoTo<CR>
-      nmap <leader>t :YcmCompleter GetType<CR>
-      nmap <leader>f :YcmCompleter FixIt<CR>
-      nmap <leader>d :YcmCompleter GetDoc<CR>
+      nnoremap <leader>d :YcmCompleter GetDoc<CR>
+      nnoremap <leader>f :YcmCompleter FixIt<CR>
+      nnoremap <leader>j :YcmCompleter GoTo<CR>
+      nnoremap <leader>r :YcmCompleter GoToReferences<CR>
+      nnoremap <leader>t :YcmCompleter GetType<CR>
     " }
   " }
 " }
