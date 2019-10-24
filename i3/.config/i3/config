@@ -63,6 +63,7 @@ set $volume_up amixer -D pulse set Master 5%+ unmute && play -q /usr/share/sound
 set $volume_down amixer -D pulse set Master 5%- unmute && play -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 set $volume_toggle_mute amixer -D pulse set Master toggle
 set $volume_toggle_mic_mute amixer -D pulse set Capture toggle
+set $pick_audio_sample_rate pick-sample-rate.sh
 
 
 ####################################################################################################
@@ -92,6 +93,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id $volume_up
 bindsym XF86AudioLowerVolume exec --no-startup-id $volume_down
 bindsym XF86AudioMute        exec --no-startup-id $volume_toggle_mute
 bindsym XF86AudioMicMute     exec --no-startup-id $volume_toggle_mic_mute
+bindsym $super+Shift+s       exec --no-startup-id $pick_audio_sample_rate
 
 
 ################################################################################
