@@ -10,6 +10,9 @@ BASHRC="$HOME/.bashrc"
 [[ -r "$BASH_PROFILE_LOCAL_BEFORE" ]] && source "$BASH_PROFILE_LOCAL_BEFORE"
 
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR=vim
+export TERMINAL=termite
+
 source "$BASHRC"
 
 [[ -r "$BASH_PROFILE_LOCAL_AFTER" ]] && source "$BASH_PROFILE_LOCAL_AFTER"

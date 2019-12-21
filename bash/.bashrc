@@ -9,34 +9,38 @@
 shopt -s checkwinsize
 
 BASHRC_LOCAL_BEFORE="$HOME/.bashrc.local.before"
-BASHRC_LOCAL_AFTER="$HOME/.bashrc.local.after"
-BASHRC_DIRCOLORS="$HOME/.dircolors"
-BASHRC_ALIASES="$HOME/.bash_aliases"
-BASHRC_COLORS="$HOME/.bash_colors"
+ALIASES="$HOME/.bash_aliases"
+COLORS="$HOME/.bash_colors"
+DIRCOLORS="$HOME/.dircolors"
 VTE_INIT="/etc/profile.d/vte.sh"
+VIRTUALENV_WRAPPER_INIT="/usr/bin/virtualenvwrapper_lazy.sh"
+FZF_INIT="$HOME/.fzf.bash"
+BASHRC_LOCAL_AFTER="$HOME/.bashrc.local.after"
 
-PYTHON_VIRTUALENV_WRAPPER="/usr/bin/virtualenvwrapper_lazy.sh"
-FZF="$HOME/.fzf.bash"
 
-[[ -f "$BASHRC_LOCAL_BEFORE"       ]] && source "$BASHRC_LOCAL_BEFORE"
-[[ -x "$PYTHON_VIRTUALENV_WRAPPER" ]] && source "$PYTHON_VIRTUALENV_WRAPPER"
-[[ -f "$BASHRC_DIRCOLORS"          ]] && eval `dircolors "$BASHRC_DIRCOLORS"`
-[[ -r "$VTE_INIT"                  ]] && source "$VTE_INIT"
+[[ -f "$BASHRC_LOCAL_BEFORE" ]] && source "$BASHRC_LOCAL_BEFORE"
 
-source "$BASHRC_COLORS"
-source "$BASHRC_ALIASES"
+source "$ALIASES"
+source "$COLORS"
+eval `dircolors "$DIRCOLORS"`
 
-# Source code highlight for less
+[[ -r "$VTE_INIT"                ]] && source "$VTE_INIT"
+[[ -x "$VIRTUALENV_WRAPPER_INIT" ]] && source "$VIRTUALENV_WRAPPER_INIT"
+[[ -f "$FZF_INIT"                ]] && source "$FZF_INIT"
+
+# Code highlight for less
 if [[ -r "/usr/bin/src-hilite-lesspipe.sh" ]]; then
     export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
     export LESS='-R'
 fi
 
-export EDITOR=vim
-export TERMINAL=termite
+# Go environment setup
+if [[ -x `command -v go` ]]; then
+    export GOPATH="$HOME/.go"
+    export PATH="$PATH:$HOME/.go/bin"
+fi
 
 PS1="\[${COLOR_BLUE}\]\n┌─┤\[${COLOR_BOLD}\]\t\[${COLOR_RESET}${COLOR_BLUE}\]│"\
 "\u@\h:\[${COLOR_CYAN}\]\w\n\[${COLOR_BLUE}\]└──────────╼\[${COLOR_RESET}\] "
 
 [[ -f "$BASHRC_LOCAL_AFTER" ]] && source "$BASHRC_LOCAL_AFTER"
-[[ -f "$FZF"                ]] && source "$FZF"
