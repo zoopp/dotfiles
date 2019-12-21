@@ -8,6 +8,10 @@ BASH_ALIASES_LOCAL="$HOME/.bash_aliases.local"
 
 alias ls='ls --color=auto -h --group-directories-first'
 alias sl='ls --color=auto -h --group-directories-first'
+if [[ -x `command -v exa` ]]; then
+    alias ls='exa -h --group-directories-first -s Name'
+    alias sl='exa -h --group-directories-first -s Name'
+fi
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
