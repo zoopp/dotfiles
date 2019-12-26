@@ -1,7 +1,7 @@
 " Some constants pointing to local configuration files
-let s:global_ycm_conf_path = '~/.config/nvim/.global_ycm_extra_conf.py'
-let s:local_plugins_path = '~/.config/nvim/local.plugins.vim'
-let s:local_init_path = '~/.config/nvim/local.init.vim'
+let s:global_ycm_conf_path = expand('<sfile>:h') . '/.global_ycm_extra_conf.py'
+let s:local_plugins_path = expand('<sfile>:h') . '/local.plugins.vim'
+let s:local_init_path = expand('<sfile>:h') . '/local.init.vim'
 
 
 " Don't rely on the neovim python client to be installed in a virtualenv
@@ -72,7 +72,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " If there's a local plugins file then source it
-    if filereadable(expand(s:local_plugins_path))
+    if filereadable(s:local_plugins_path)
         execute 'source ' . s:local_plugins_path
     endif
   call plug#end()
@@ -259,7 +259,7 @@ let g:python3_host_prog = '/usr/bin/python3'
     " }
 
     " YouCompleteMe {
-      let g:ycm_global_ycm_extra_conf = expand(s:global_ycm_conf_path)
+      let g:ycm_global_ycm_extra_conf = s:global_ycm_conf_path
       let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
       let g:ycm_key_list_previous_completion = ['<S-TAB>', '<C-k>']
       let g:ycm_key_invoke_completion = '<C-Space>'
@@ -275,7 +275,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 
 " Load any local configurations if available
-if filereadable(expand(s:local_init_path))
+if filereadable(s:local_init_path)
     execute 'source ' . s:local_init_path
 endif
 
