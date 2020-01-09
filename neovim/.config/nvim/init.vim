@@ -2,6 +2,7 @@
 let s:global_ycm_conf_path = expand('<sfile>:h') . '/.global_ycm_extra_conf.py'
 let s:local_plugins_path = expand('<sfile>:h') . '/local.plugins.vim'
 let s:local_init_path = expand('<sfile>:h') . '/local.init.vim'
+let s:plugin_path = expand('<sfile>:h') . '/plugged'
 
 
 " Don't rely on the neovim python client to be installed in a virtualenv
@@ -10,72 +11,73 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 
 " Plugins {
-  call plug#begin()
-    " General {
-      Plug 'morhetz/gruvbox'                      " Color scheme
-      Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
-      Plug 'vim-airline/vim-airline'              " Status and tab bar
+call plug#begin(s:plugin_path)
+  " General {
+    Plug 'morhetz/gruvbox'                      " Color scheme
+    Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
+    Plug 'vim-airline/vim-airline'              " Status and tab bar
 
-      " A file browser tree & a git plugin to go along
-      Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
-      Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+    " A file browser tree & a git plugin to go along
+    Plug 'scrooloose/nerdtree',         { 'on': 'NERDTreeToggle' }
+    Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
-      " Fuzzy finder + vim integration
-      Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-      Plug 'junegunn/fzf.vim'
+    " Fuzzy finder + vim integration
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Plug 'junegunn/fzf.vim'
 
-      " Misc
-      Plug 'junegunn/vim-easy-align'              " Text alignment
-      Plug 'zhimsel/vim-stay'                     " Automatic view creation and restoration
+    " Misc
+    Plug 'junegunn/vim-easy-align'              " Text alignment
+    Plug 'zhimsel/vim-stay'                     " Automatic view creation and restoration
+  " }
+
+  " General Programming {
+    " Syntax {
+      Plug 'PotatoesMaster/i3-vim-syntax'       " i3 config syntax highlight
     " }
 
-    " General Programming {
-      " Syntax {
-        Plug 'PotatoesMaster/i3-vim-syntax'       " i3 config syntax highlight
-      " }
-
-      " Code {
-        Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang' }
-        Plug 'majutsushi/tagbar'                  " Tags browser
-      " }
-
-      " VCS {
-        Plug 'tpope/vim-fugitive'                 " Git integration
-      " }
-
-      " Misc {
-        Plug 'Raimondi/delimitMate'               " Auto close matching pairs of characters
-        Plug 'mhinz/vim-signify'                  " Gutter diff indicator that integrates with VCSs
-      " }
+    " Code {
+      Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang --go-completer' }
+      Plug 'majutsushi/tagbar'                  " Tags browser
     " }
 
-    " C++ {
-      Plug 'octol/vim-cpp-enhanced-highlight'     " Better C++ syntax highlighting
-      Plug 'richq/vim-cmake-completion', {'for': 'cmake'}
+    " VCS {
+      Plug 'tpope/vim-fugitive'                 " Git integration
+      Plug 'junegunn/gv.vim'                    " Git commit browser
     " }
 
-    " Markdown {
-      Plug 'plasticboy/vim-markdown'              " Markdown integration
+    " Misc {
+      Plug 'Raimondi/delimitMate'               " Auto close matching pairs of characters
+      Plug 'mhinz/vim-signify'                  " Gutter diff indicator that integrates with VCSs
     " }
+  " }
 
-    " Python {
-      Plug 'python-mode/python-mode', {'branch': 'develop'}  " Better Python support
-      Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Semantic highlight
-    " }
+  " C++ {
+    Plug 'octol/vim-cpp-enhanced-highlight'     " Better C++ syntax highlighting
+    Plug 'richq/vim-cmake-completion', {'for': 'cmake'}
+  " }
 
-    " ReStructuredText {
-      Plug 'gu-fan/riv.vim',    {'for': 'rst'}    " ReStructuredText integration
-    " }
+  " Markdown {
+    Plug 'plasticboy/vim-markdown'              " Markdown integration
+  " }
 
-    " JSON {
-      Plug 'elzr/vim-json'                        " Better JSON support
-    " }
+  " Python {
+    Plug 'python-mode/python-mode', {'branch': 'develop'}  " Better Python support
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Semantic highlight
+  " }
 
-    " If there's a local plugins file then source it
-    if filereadable(s:local_plugins_path)
-        execute 'source ' . s:local_plugins_path
-    endif
-  call plug#end()
+  " ReStructuredText {
+    Plug 'gu-fan/riv.vim',    {'for': 'rst'}    " ReStructuredText integration
+  " }
+
+  " JSON {
+    Plug 'elzr/vim-json'                        " Better JSON support
+  " }
+
+  " If there's a local plugins file then source it
+  if filereadable(s:local_plugins_path)
+      execute 'source ' . s:local_plugins_path
+  endif
+call plug#end()
 " }
 
 " Settings {
@@ -207,7 +209,7 @@ let g:python3_host_prog = '/usr/bin/python3'
       nmap <C-e> :NERDTreeToggle<CR>
       let g:NERDTreeCaseSensitiveSort=1
       let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
-      let g:NERDTreeBookmarksFile='~/.vim/NERDTreeBookmarks'
+      let g:NERDTreeBookmarksFile=stdpath('data') . '/NERDTreeBookmarks'
       let g:NERDTreeMouseMode=2
     " }
 
