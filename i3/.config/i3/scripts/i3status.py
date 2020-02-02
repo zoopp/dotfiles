@@ -1,7 +1,7 @@
 from i3pystatus import Status
 
 
-status = Status(standalone=True)
+status = Status()
 
 
 status.register('clock', format=' %a %-d %b %H:%M ')
@@ -19,8 +19,8 @@ status.register('battery',
             'CHR': '↑',
             'FULL': '',
         })
-status.register('network', interface='enp1s0', format_up=' {v4cidr} ')
-status.register('network', interface='wlp2s0', format_up=' {essid}{quality:3.0f}% ({v6}) ',)
+status.register('network', interface='enp3s0', format_up=' {v4cidr} ')
+status.register('network', interface='wlp2s0', format_up=' {essid}{quality:3.0f}% ({v4cidr}) ')
 
 
 status.run()
