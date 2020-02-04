@@ -1,5 +1,4 @@
 " Some constants pointing to local configuration files
-let s:global_ycm_conf_path = expand('<sfile>:h') . '/.global_ycm_extra_conf.py'
 let s:local_plugins_path = expand('<sfile>:h') . '/local.plugins.vim'
 let s:local_init_path = expand('<sfile>:h') . '/local.init.vim'
 let s:plugin_path = expand('<sfile>:h') . '/plugged'
@@ -36,7 +35,7 @@ call plug#begin(s:plugin_path)
     " }
 
     " Code {
-      Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --system-libclang --go-completer' }
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
       Plug 'majutsushi/tagbar'                  " Tags browser
     " }
 
@@ -53,7 +52,6 @@ call plug#begin(s:plugin_path)
 
   " C++ {
     Plug 'octol/vim-cpp-enhanced-highlight'     " Better C++ syntax highlighting
-    Plug 'richq/vim-cmake-completion', {'for': 'cmake'}
   " }
 
   " Markdown {
@@ -61,7 +59,6 @@ call plug#begin(s:plugin_path)
   " }
 
   " Python {
-    Plug 'python-mode/python-mode', {'branch': 'develop'}  " Better Python support
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Semantic highlight
   " }
 
@@ -190,6 +187,8 @@ call plug#end()
       nmap <leader>7 <Plug>AirlineSelectTab7
       nmap <leader>8 <Plug>AirlineSelectTab8
       nmap <leader>9 <Plug>AirlineSelectTab9
+      nmap <leader>- <Plug>AirlineSelectNextTab
+      nmap <leader>= <Plug>AirlineSelectPrevTab
     " }
 
     " Delimitmate {
@@ -211,11 +210,6 @@ call plug#end()
       let g:NERDTreeIgnore=['\~$', '\pyc', '__pycache__']
       let g:NERDTreeBookmarksFile=stdpath('data') . '/NERDTreeBookmarks'
       let g:NERDTreeMouseMode=2
-    " }
-
-    " python-mode {
-      let g:pymode_virtualenv=1                           " Autodetect virtualenv
-      let g:pymode_rope = 0                               " Disable rope
     " }
 
     " semshi {
@@ -258,19 +252,6 @@ call plug#end()
 
     " vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
-    " }
-
-    " YouCompleteMe {
-      let g:ycm_global_ycm_extra_conf = s:global_ycm_conf_path
-      let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
-      let g:ycm_key_list_previous_completion = ['<S-TAB>', '<C-k>']
-      let g:ycm_key_invoke_completion = '<C-Space>'
-
-      nnoremap <leader>d :YcmCompleter GetDoc<CR>
-      nnoremap <leader>f :YcmCompleter FixIt<CR>
-      nnoremap <leader>j :YcmCompleter GoTo<CR>
-      nnoremap <leader>r :YcmCompleter GoToReferences<CR>
-      nnoremap <leader>t :YcmCompleter GetType<CR>
     " }
   " }
 " }
