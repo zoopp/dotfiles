@@ -1,3 +1,0 @@
-#!/bin/bash
-set -v
-sudo su -c "rmmod nvidia_drm nvidia_modeset nvidia_uvm nvidia && tee /proc/acpi/bbswitch <<< OFF"

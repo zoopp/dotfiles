@@ -23,7 +23,7 @@ function require_commands {
 
 
 # ----------------------------------------------------------------------------------------------------
-require_commands ls cut stow git curl make cmake g++ gcc
+require_commands ls cut stow git curl
 
 
 # ----------------------------------------------------------------------------------------------------
