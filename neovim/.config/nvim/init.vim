@@ -26,6 +26,7 @@ call plug#begin(s:plugin_path)
 
     " Misc
     Plug 'junegunn/vim-easy-align'              " Text alignment
+    Plug 'lambdalisue/suda.vim'                 " workaround for broken :w !sudo tee %
     Plug 'zhimsel/vim-stay'                     " Automatic view creation and restoration
   " }
 
@@ -169,6 +170,9 @@ call plug#end()
     command! -bang Q q<bang>
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
+
+    " For when I forget to edit with su permissions
+    cmap w!! w suda://%
   " }
 
   " Plugins {
