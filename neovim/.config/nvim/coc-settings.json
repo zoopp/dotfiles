@@ -1,0 +1,20 @@
+{
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextLines": 1,
+  "python.autoComplete.addBrackets": true,
+  "suggest.noselect":false,
+  "suggest.triggerAfterInsertEnter": true,
+
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        }
+      }
+    }
+  }
+}

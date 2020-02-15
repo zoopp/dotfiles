@@ -1,6 +1,7 @@
 " Some constants pointing to local configuration files
-let s:local_plugins_path = expand('<sfile>:h') . '/local.plugins.vim'
+let s:coc_config = expand('<sfile>:h') . '/coc.vim'
 let s:local_init_path = expand('<sfile>:h') . '/local.init.vim'
+let s:local_plugins_path = expand('<sfile>:h') . '/local.plugins.vim'
 let s:plugin_path = expand('<sfile>:h') . '/plugged'
 
 
@@ -260,6 +261,10 @@ call plug#end()
   " }
 " }
 
+" Load coc.nvim configuration
+if filereadable(s:coc_config)
+    execute 'source ' . s:coc_config
+endif
 
 " Load any local configurations if available
 if filereadable(s:local_init_path)
