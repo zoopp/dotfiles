@@ -1,7 +1,13 @@
 " Affects diagnostic messages
 set updatetime=300
 
-call coc#add_extension('coc-python', 'coc-vimlsp', 'coc-json')
+call coc#add_extension('coc-emoji')
+call coc#add_extension(
+    \ 'coc-json',
+    \ 'coc-python',
+    \ 'coc-vimlsp',
+    \ 'coc-yaml',
+\)
 
 function! s:is_whitespace_before_cursor() abort
   let col_idx = col('.') - 1
