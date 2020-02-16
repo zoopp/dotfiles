@@ -32,12 +32,9 @@ call plug#begin(s:plugin_path)
   " }
 
   " General Programming {
-    " Syntax {
-      Plug 'PotatoesMaster/i3-vim-syntax'       " i3 config syntax highlight
-    " }
-
     " Code {
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
+      Plug 'sheerun/vim-polyglot'               " Lots of syntax, indent & other things
       Plug 'majutsushi/tagbar'                  " Tags browser
     " }
 
@@ -52,24 +49,12 @@ call plug#begin(s:plugin_path)
     " }
   " }
 
-  " C++ {
-    Plug 'octol/vim-cpp-enhanced-highlight'     " Better C++ syntax highlighting
-  " }
-
-  " Markdown {
-    Plug 'plasticboy/vim-markdown'              " Markdown integration
-  " }
-
   " Python {
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Semantic highlight
   " }
 
   " ReStructuredText {
     Plug 'gu-fan/riv.vim',    {'for': 'rst'}    " ReStructuredText integration
-  " }
-
-  " JSON {
-    Plug 'elzr/vim-json'                        " Better JSON support
   " }
 
   " If there's a local plugins file then source it
@@ -255,7 +240,7 @@ call plug#end()
       \ }
     " }
 
-    " vim-cpp-enhanced-highlight {
+    " vim-polyglot: vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
     " }
   " }
