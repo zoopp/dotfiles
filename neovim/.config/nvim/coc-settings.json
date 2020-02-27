@@ -4,10 +4,18 @@
       "gitcommit"
   ],
 
-  "diagnostic.virtualText": true,
+  "diagnostic.virtualText": false,
   "diagnostic.virtualTextLines": 1,
 
-  "python.autoComplete.addBrackets": true,
+  "python.linting.pylintArgs": [
+      "--disable",  "missing-function-docstring,missing-module-docstring,missing-class-docstring"
+  ],
+  "python.sortImports.args": [
+      "--balanced",
+      "--multi-line", "3",
+      "--trailing-comma",
+      "--use-parentheses"
+  ],
 
   "suggest.minTriggerInputLength": 2,
   "suggest.noselect": false,
