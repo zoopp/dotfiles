@@ -51,7 +51,7 @@ vmap <silent> <leader>f <Plug>(coc-format-selected)
 nmap <silent> <leader>f <Plug>(coc-format-selected)
 
 nmap <silent>         ]e <Plug>(coc-diagnostic-next)
-nmap <silent>         [e <Plug>(coc-diagnostic-previous)
+nmap <silent>         [e <Plug>(coc-diagnostic-prev)
 
 nmap <silent> <leader>jd <Plug>(coc-definition)
 nmap <silent> <leader>ji <Plug>(coc-implementation)
