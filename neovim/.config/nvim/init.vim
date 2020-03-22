@@ -188,12 +188,21 @@ call plug#end()
     " }
 
     " fzf {
-      command! FindInProject execute 'FZF' utils#FindProjectRoot()
+      " fzf with floating windows
+      let g:fzf_layout = {'window': {'width': 0.8, 'height': 0.75}}
+      let g:_fzf_opts = {'options': ['--info=inline', '--layout=reverse']}
 
-      nnoremap <C-p> :FindInProject<CR>
-      nnoremap <leader>l :BLines<CR>
-      nnoremap <leader>b :Buffers<CR>
-      nnoremap <leader>a :Ag<CR>
+      " Find files in project
+      nnoremap <silent> <C-p> :call fzf#vim#files(
+        \ utils#FindProjectRoot(),
+        \ fzf#vim#with_preview(g:_fzf_opts)
+        \)<CR>
+
+      " Apparently the calls bellow modify the input dictionary so pass a copy
+      " of our options instead.
+      nnoremap <leader>l :call fzf#vim#buffer_lines(copy(g:_fzf_opts))<CR>
+      nnoremap <leader>b :call fzf#vim#buffers(copy(g:_fzf_opts))<CR>
+      nnoremap <leader>a :call fzf#vim#ag('', fzf#vim#with_preview(copy(g:_fzf_opts)))<CR>
     " }
 
     " NERDTree {
