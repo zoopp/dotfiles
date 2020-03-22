@@ -14,7 +14,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 call plug#begin(s:plugin_path)
   " General {
     Plug 'morhetz/gruvbox'                      " Color scheme
-    Plug 'myusuf3/numbers.vim'                  " Toggle between relative and fixed line numbers
     Plug 'vim-airline/vim-airline'              " Status and tab bar
 
     " A file browser tree & a git plugin to go along
@@ -94,6 +93,7 @@ call plug#end()
     set cursorline                                " Highlight current line
     set foldenable                                " Enable folding
     set hlsearch                                  " Highlight search terms
+    set number                                    " Show line numbers
     set showmatch                                 " Show matching brackets
 
     " Highlight problematic white space
