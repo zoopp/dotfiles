@@ -12,6 +12,7 @@
   ],
   "python.sortImports.args": [
       "--balanced",
+      "--combine-as",
       "--multi-line", "3",
       "--trailing-comma",
       "--use-parentheses"

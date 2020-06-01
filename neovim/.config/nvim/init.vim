@@ -25,7 +25,7 @@ call plug#begin(s:plugin_path)
     Plug 'junegunn/fzf.vim'
 
     " Misc
-    Plug 'junegunn/vim-easy-align'              " Text alignment
+    Plug 'godlygeek/tabular'                    " Text alignment
     Plug 'lambdalisue/suda.vim'                 " workaround for broken :w !sudo tee %
     Plug 'zhimsel/vim-stay'                     " Automatic view creation and restoration
   " }
@@ -45,6 +45,10 @@ call plug#begin(s:plugin_path)
     " Misc {
       Plug 'Raimondi/delimitMate'               " Auto close matching pairs of characters
       Plug 'mhinz/vim-signify'                  " Gutter diff indicator that integrates with VCSs
+
+      " Indentation guides
+      Plug 'Yggdroot/indentLine'
+      Plug 'lukas-reineke/indent-blankline.nvim'
     " }
   " }
 
@@ -58,7 +62,7 @@ call plug#begin(s:plugin_path)
 
   " If there's a local plugins file then source it
   if filereadable(s:local_plugins_path)
-      execute 'source ' . s:local_plugins_path
+    execute 'source ' . s:local_plugins_path
   endif
 call plug#end()
 " }
@@ -254,17 +258,21 @@ call plug#end()
     " vim-polyglot: vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
     " }
+
+    " indentLine and indent-blankline.nvim
+      let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+    " }
   " }
 " }
 
 " Load coc.nvim configuration
 if filereadable(s:coc_config)
-    execute 'source ' . s:coc_config
+  execute 'source ' . s:coc_config
 endif
 
 " Load any local configurations if available
 if filereadable(s:local_init_path)
-    execute 'source ' . s:local_init_path
+  execute 'source ' . s:local_init_path
 endif
 
 " vim: set sw=2 ts=2 sts=2 et tw=100 foldmarker={,} foldlevel=0 foldmethod=marker :

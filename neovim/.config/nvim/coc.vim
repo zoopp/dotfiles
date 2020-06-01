@@ -76,5 +76,6 @@ nmap <silent> <leader>lre :<C-u>CocListResume<CR>
 augroup cocstuff
     autocmd!
     " autocmd CursorHold * silent call CocActionAsync('highlight')
+    " autocmd CursorHold * silent call CocActionAsync('doHover')
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
