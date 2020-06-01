@@ -2,4 +2,3 @@
 
 sudo cpupower frequency-set -g performance
 nvidia-settings -a [gpu:0]/GPUPowerMizerMode=1
-killall compton
