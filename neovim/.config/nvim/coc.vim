@@ -78,6 +78,3 @@ augroup cocstuff
     " autocmd CursorHold * silent call CocActionAsync('highlight')
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-
-
