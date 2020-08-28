@@ -64,8 +64,9 @@ client.unfocused        $unfocused_border $unfocused_background $unfocused_text 
 client.urgent           $urgent_border    $urgent_background    $urgent_text    $urgent_indicator
 
 
-# i3 bar colors
-set_from_resource $bar_background i3wm.color0  #282828
+# i3 bar colors (old: #282828)
+set_from_resource $bar_background i3wm.color0  #070707
+
 set_from_resource $bar_statusline i3wm.color15 #ebdbb2
 set_from_resource $bar_separator  i3wm.color8  #928374
 
@@ -87,6 +88,7 @@ set_from_resource $uworkspace_text       i3wm.color15 #ebdbb2
 
 bar {
     status_command python ~/.config/i3/scripts/i3status.py
+    tray_output primary
     position top
     colors {
         background           $bar_background

@@ -17,7 +17,8 @@ size_hints = true
 [colors]
 # Gruvbox
 #background = #1d2021
-background = rgba(29, 32, 33, 0.8)
+#background = rgba(29, 32, 33, 0.8)
+background = rgba(7, 7, 7, 0.8)
 foreground = #ebdbb2
 foreground_bold = #ebdbb2
 
