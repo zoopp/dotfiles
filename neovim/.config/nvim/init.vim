@@ -54,6 +54,7 @@ call plug#begin(s:plugin_path)
 
   " Python {
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Semantic highlight
+    Plug 'petobens/poet-v'
   " }
 
   " ReStructuredText {
@@ -255,12 +256,19 @@ call plug#end()
       \ }
     " }
 
+    " poet-v {
+      let g:poetv_auto_activate = 1
+    " }
+
     " vim-polyglot: vim-cpp-enhanced-highlight {
       let g:cpp_class_scope_highlight = 1
     " }
 
     " indentLine and indent-blankline.nvim
+      let g:indentLine_bufTypeExclude = ['help', 'terminal']
+      let g:indentLine_bufNameExclude = ['NERD_Tree.*']
       let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+      let g:indentLine_faster = 1
     " }
   " }
 " }

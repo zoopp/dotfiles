@@ -1,5 +1,5 @@
 " Affects diagnostic messages
-set updatetime=300
+set updatetime=100
 set signcolumn=yes
 set nobackup
 set nowritebackup
@@ -9,6 +9,7 @@ call coc#add_extension('coc-emoji')
 call coc#add_extension(
     \ 'coc-json',
     \ 'coc-python',
+    \ 'coc-sh',
     \ 'coc-vimlsp',
     \ 'coc-yaml',
 \)

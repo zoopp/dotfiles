@@ -8,7 +8,7 @@
   "diagnostic.virtualTextLines": 1,
 
   "python.linting.pylintArgs": [
-      "--disable",  "missing-function-docstring,missing-module-docstring,missing-class-docstring"
+      "--disable",  "missing-function-docstring,missing-module-docstring,missing-class-docstring,too-few-public-methods"
   ],
   "python.sortImports.args": [
       "--balanced",
