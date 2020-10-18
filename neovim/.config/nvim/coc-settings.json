@@ -1,21 +1,23 @@
 {
   "coc.source.emoji.filetypes": [
-      "markdown",
-      "gitcommit"
+    "markdown",
+    "gitcommit"
   ],
 
   "diagnostic.virtualText": false,
   "diagnostic.virtualTextLines": 1,
 
+  "python.formatting.provider": "black",
   "python.linting.pylintArgs": [
-      "--disable",  "missing-function-docstring,missing-module-docstring,missing-class-docstring,too-few-public-methods"
+    "--disable",
+    "missing-function-docstring,missing-module-docstring,missing-class-docstring,too-few-public-methods"
   ],
   "python.sortImports.args": [
-      "--balanced",
-      "--combine-as",
-      "--multi-line", "3",
-      "--trailing-comma",
-      "--use-parentheses"
+    "--balanced",
+    "--combine-as",
+    "--multi-line", "3",
+    "--trailing-comma",
+    "--use-parentheses"
   ],
 
   "suggest.minTriggerInputLength": 2,
@@ -24,8 +26,17 @@
   "languageserver": {
     "ccls": {
       "command": "ccls",
-      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "filetypes": [
+        "c",
+        "cpp",
+        "cuda",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls-root",
+        "compile_commands.json"
+      ],
       "initializationOptions": {
         "cache": {
           "directory": ".ccls-cache"

@@ -8,7 +8,7 @@ set hidden
 call coc#add_extension('coc-emoji')
 call coc#add_extension(
     \ 'coc-json',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-sh',
     \ 'coc-vimlsp',
     \ 'coc-yaml',
@@ -47,9 +47,15 @@ xmap <silent> af <Plug>(coc-funcobj-a)
 omap <silent> if <Plug>(coc-funcobj-i)
 omap <silent> af <Plug>(coc-funcobj-a)
 
+" Class text objects
+xmap <silent> ic <Plug>(coc-classobj-i)
+xmap <silent> ac <Plug>(coc-classobj-a)
+omap <silent> ic <Plug>(coc-classobj-i)
+omap <silent> ac <Plug>(coc-classobj-a)
+
 " Functionality
 vmap <silent> <leader>f <Plug>(coc-format-selected)
-nmap <silent> <leader>f <Plug>(coc-format-selected)
+nmap <silent> <leader>f <Plug>(coc-format)
 
 nmap <silent>         ]e <Plug>(coc-diagnostic-next)
 nmap <silent>         [e <Plug>(coc-diagnostic-prev)
