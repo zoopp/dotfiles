@@ -103,23 +103,22 @@ bar {
     }
 }
 
-# hide title bars, 2pixel borders
-new_window pixel 0
-new_float pixel 0
+# hide title bars
+default_border none
+default_floating_border none
+
+# Rules for all windows
 for_window [class="^.*"] border pixel 2
-for_window [class="Player"] floating enable
+hide_edge_borders smart
+popup_during_fullscreen smart
 
-# fix for some unity seizures
-for_window [class="Unity"] floating enable
-for_window [class="Unity" title="Unity -"] floating disable
-
+# Rules for Ghidra windows
 for_window [class="Ghidra"] floating enable
 for_window [class="Ghidra" title="CodeBrowser"] floating disable
 for_window [class="Ghidra" title="Version Tracking"] floating disable
 
-#
-popup_during_fullscreen smart
-hide_edge_borders smart
+# Rules for PulseAudio Volume Control windows
+for_window [class="Pavucontrol"] floating enable
 
 
 ####################################################################################################
