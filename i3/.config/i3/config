@@ -2,39 +2,9 @@
 ##                                           Appearance                                           ##
 ####################################################################################################
 #
-# Default color number meaning (obviously, might not hold depending on color scheme):
+# Default colors based on gruvbox
 #
-#     (usually same as 0):  background
-#     (usually same as 15): foreground
-#
-#     0: black  | 8:  bright-black
-#     1: red    | 9:  bright-red
-#     2: green  | 10: bright-green
-#     3: yellow | 11: bright-yellow
-#     4: blue   | 12: bright-blue
-#     5: purple | 13: bright-purple
-#     6: cyan   | 14: bright-cyan
-#     7: white  | 15: bright-white
-#
-# Fallback color scheme based on gruvbox color palette:
-#
-#     background hard contrast:   #1d2021
-#     background medium contrast: #282828
-#     background soft contrast:   #32302f
-#
-#     background: #1d2021
-#     foreground: #ebdbb2
-#
-#     0: #282828 | 8:  #928374
-#     1: #cc241d | 9:  #fb4934
-#     2: #98971a | 10: #b8bb26
-#     3: #d79921 | 11: #fabd2f
-#     4: #458588 | 12: #83a598
-#     5: #b16286 | 13: #d3869b
-#     6: #689d6a | 14: #8ec07c
-#     7: #a89984 | 15: #ebdbb2
-#
-font xft:Fira Code Semibold 10
+font xft:Fira Code Medium 10
 
 # Client colors
 set_from_resource $focused_border     i3wm.color6 #689d6a
@@ -47,10 +17,10 @@ set_from_resource $focusedi_background i3wm.background #1d2021
 set_from_resource $focusedi_text       i3wm.color8 #928374
 set_from_resource $focusedi_indicator  i3wm.color0 #282828
 
-set_from_resource $unfocused_border     i3wm.background #32302f
-set_from_resource $unfocused_background i3wm.background #32302f
-set_from_resource $unfocused_text       i3wm.color8     #928374
-set_from_resource $unfocused_indicator  i3wm.color0     #282828
+set_from_resource $unfocused_border     i3wm.color0 #282828
+set_from_resource $unfocused_background i3wm.color0 #282828
+set_from_resource $unfocused_text       i3wm.color8 #928374
+set_from_resource $unfocused_indicator  i3wm.color0 #282828
 
 set_from_resource $urgent_border     i3wm.color1  #cc241d
 set_from_resource $urgent_background i3wm.color1  #cc241d
@@ -65,25 +35,25 @@ client.urgent           $urgent_border    $urgent_background    $urgent_text    
 
 
 # i3 bar colors (old: #282828)
-set_from_resource $bar_background i3wm.color0  #070707
+set_from_resource $bar_background i3wm.color0 #282828
 
 set_from_resource $bar_statusline i3wm.color15 #ebdbb2
 set_from_resource $bar_separator  i3wm.color8  #928374
 
-set_from_resource $fworkspace_border     i3wm.color6  #689d6a
-set_from_resource $fworkspace_background i3wm.color6  #689d6a
-set_from_resource $fworkspace_text       i3wm.color0  #282828
+set_from_resource $fworkspace_border     i3wm.color14  #8ec87c
+set_from_resource $fworkspace_background i3wm.color6   #689d6a
+set_from_resource $fworkspace_text       i3wm.color0   #282828
 
 set_from_resource $aworkspace_border     i3wm.background #1d2021
 set_from_resource $aworkspace_background i3wm.background #1d2021
 set_from_resource $aworkspace_text       i3wm.color8     #928374
 
-set_from_resource $iworkspace_border     i3wm.background #32302f
-set_from_resource $iworkspace_background i3wm.background #32302f
+set_from_resource $iworkspace_border     i3wm.background #1d2021
+set_from_resource $iworkspace_background i3wm.background #1d2021
 set_from_resource $iworkspace_text       i3wm.color8     #928374
 
-set_from_resource $uworkspace_border     i3wm.color1  #cc241d
-set_from_resource $uworkspace_background i3wm.color1  #cc241d
+set_from_resource $uworkspace_border     i3wm.color9  #cc241d
+set_from_resource $uworkspace_background i3wm.color1  #fb4934
 set_from_resource $uworkspace_text       i3wm.color15 #ebdbb2
 
 bar {
@@ -165,7 +135,6 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id $volume_up
 bindsym XF86AudioLowerVolume exec --no-startup-id $volume_down
 bindsym XF86AudioMute        exec --no-startup-id $volume_toggle_mute
 bindsym XF86AudioMicMute     exec --no-startup-id $volume_toggle_mic_mute
-bindsym $super+Shift+s       exec --no-startup-id $pick_audio_sample_rate
 
 
 ################################################################################

@@ -11,7 +11,7 @@ BASHRC="$HOME/.bashrc"
 
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=vim
-export TERMINAL=termite
+export TERMINAL=alacritty
 
 source "$BASHRC"
 
