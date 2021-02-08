@@ -14,6 +14,11 @@ call coc#add_extension(
     \ 'coc-yaml',
 \)
 
+let g:coc_filetype_map = {
+\ 'yaml.ansible': 'yaml'
+\ }
+
+
 function! s:is_whitespace_before_cursor() abort
   let col_idx = col('.') - 1
   return col_idx == 0 || getline('.')[col_idx - 1]  =~ '\s'

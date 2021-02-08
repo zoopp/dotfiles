@@ -8,9 +8,10 @@
   "diagnostic.virtualTextLines": 1,
 
   "python.formatting.provider": "black",
+  "python.linting.pylintEnabled": true,
   "python.linting.pylintArgs": [
     "--disable",
-    "missing-function-docstring,missing-module-docstring,missing-class-docstring,too-few-public-methods"
+    "missing-function-docstring,missing-module-docstring,missing-class-docstring,too-few-public-methods,unsubscriptable-object"
   ],
   "python.sortImports.args": [
     "--balanced",
@@ -43,5 +44,26 @@
         }
       }
     }
+  },
+
+  "yaml.schemaStore.enable": true,
+  "yaml.schemas": {
+    "kubernetes": [
+      "*.kube.yaml",
+      "*.yaml.j2",
+      "*.yaml"
+    ],
+    "https://json.schemastore.org/ansible-playbook": [
+      "**/playbooks/*.yml",
+      "**/playbooks/*.yaml",
+      "**/playbook.yaml",
+      "**/playbook.yml"
+    ],
+    "https://json.schemastore.org/ansible-role-2.9": [
+      "roles/**/*.yaml"
+    ],
+    "https://json.schemastore.org/kustomization": [
+      "*/kustomization.yaml"
+    ]
   }
 }
