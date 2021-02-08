@@ -9,6 +9,8 @@ let s:plugin_path = expand('<sfile>:h') . '/plugged'
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
+" Disable polyglot's markdown support.
+let g:polyglot_disabled = ["markdown"]
 
 " Plugins {
 call plug#begin(s:plugin_path)
@@ -51,6 +53,11 @@ call plug#begin(s:plugin_path)
       Plug 'lukas-reineke/indent-blankline.nvim'
     " }
   " }
+
+  " Markdown {
+    Plug 'gabrielelana/vim-markdown'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+  "}
 
   " Python {
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} " Semantic highlight
