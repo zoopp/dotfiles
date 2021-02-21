@@ -91,3 +91,8 @@ augroup cocstuff
     " autocmd CursorHold * silent call CocActionAsync('doHover')
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+let g:coc_filetype_map = {
+\ "yaml.ansible": "yaml",
+\ "yaml.docker-compose": "yaml"
+\ }
