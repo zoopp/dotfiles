@@ -34,11 +34,6 @@ if [[ -r "/usr/bin/src-hilite-lesspipe.sh" ]]; then
     export LESS='-R'
 fi
 
-# Go environment setup
-if [[ -x `command -v go` ]]; then
-    export GOPATH="$HOME/.go"
-    export PATH="$PATH:$HOME/.go/bin"
-fi
 
 PS1="\[${COLOR_BLUE}\]\n┌─┤\[${COLOR_BOLD}\]\t\[${COLOR_RESET}${COLOR_BLUE}\]│"\
 "\u@\h:\[${COLOR_CYAN}\]\w\n\[${COLOR_BLUE}\]└──────────╼\[${COLOR_RESET}\] "
