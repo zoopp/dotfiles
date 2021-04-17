@@ -22,65 +22,64 @@ color15 = "#ebdbb2"
 status = Status()
 
 
-status.register('clock', format=' %a %-d %b %H:%M ')
+status.register("clock", format=" %a %-d %b %H:%M ")
 status.register(
-    'pulseaudio',
-    format=' 🔊 {volume} ',
+    "pulseaudio",
+    format=" 🔊 {volume} ",
     color_muted=color9,
     color_unmuted=color15,
-    multi_colors=True
+    multi_colors=True,
 )
 status.register(
-    'backlight',
-    format=' 🔆 {percentage}% ',
-    backlight='intel_backlight',
+    "backlight",
+    format=" 🔆 {percentage}% ",
+    backlight="intel_backlight",
 )
 status.register(
-    'cpu_usage_graph',
+    "cpu_usage_graph", dynamic_color=True, start_color=color14, end_color=color9
+)
+status.register(
+    "temp",
+    format=" CPU: {temp:.0f}°C ",
     dynamic_color=True,
-    start_color=color14,
-    end_color=color9
-)
-status.register(
-    'temp',
-    format=' CPU: {temp:.0f}°C ',
-    dynamic_color=True,
+    file="/sys/class/thermal/thermal_zone1/temp",
     color=color14,
-    alert_color=color9
+    alert_color=color9,
 )
+
 status.register(
-    'mem',
-    format=' Memory: {used_mem:4.0f}MB/{total_mem:4.0f}MB ',
+    "mem",
+    format=" Memory: {used_mem:4.0f}MB/{total_mem:4.0f}MB ",
     color=color15,
     warn_color=color11,
-    alert_color=color9
+    alert_color=color9,
 )
 status.register(
-    'battery',
-    format=' BAT: {status}{percentage:.2f}% ({consumption}W) {remaining:%E%hh:%Mm} ',
+    "battery",
+    format=" BAT: {status}{percentage:.2f}% ({consumption}W) {remaining:%E%hh:%Mm} ",
     charging_color=color10,
     full_color=color14,
     alert=True,
     alert_percentage=10,
     status={
-        'DIS': '↓',
-        'CHR': '↑',
-        'FULL': '',
-    }
+        "DIS": "↓",
+        "CHR": "↑",
+        "FULL": "",
+    },
 )
 status.register(
-    'network',
-    interface='enp3s0',
-    format_up=' {v4cidr} ',
+    "network",
+    interface="enp3s0",
+    format_up=" {v4cidr} ",
     color_up=color14,
-    color_down=color9
+    color_down=color9,
 )
 status.register(
-    'network',
-    interface='wlp2s0',
-    format_up=' {essid}{quality:3.0f}% ({v4cidr}) ',
+    "network",
+    interface="wlp2s0",
+    format_up=" {essid}{quality:3.0f}% ({v4cidr}) ",
     color_up=color14,
-    color_down=color9
+    color_down=color9,
 )
 
 
