@@ -28,7 +28,7 @@ alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias noise="play -c2 -n synth whitenoise band -n 100 24 band -n 200 100 gain +20"
 
 if has_command bat; then
-    export BAT_THEME=gruvbox
+    export BAT_THEME=gruvbox-dark
     alias cat="bat --plain --paging never"
 fi
 
