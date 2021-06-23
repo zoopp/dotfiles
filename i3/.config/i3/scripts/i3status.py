@@ -40,9 +40,9 @@ status.register(
 )
 status.register(
     "temp",
-    format=" CPU: {temp:.0f}°C ",
+    format=" CPU: {Package_id_0:.0f}°C ",
     dynamic_color=True,
-    file="/sys/class/thermal/thermal_zone1/temp",
+    lm_sensors_enabled=True,
     color=color14,
     alert_color=color9,
 )
